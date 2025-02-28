@@ -23,13 +23,6 @@
   <section class="sec3">
   </section>
 
-
-
-
-
-
-  
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
         let images = [];
