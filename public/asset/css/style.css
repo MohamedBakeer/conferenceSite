@@ -256,37 +256,42 @@ footer > p >a {
 /* ------------------Responsive Design */
 @media (max-width: 1000px) {
     header {
-        /* height: 20vh; */
+        height: 20vh;
         width: 100vw;
-        flex-direction: column;
+        /* flex-direction: column; */
         height: calc(2vh + 15vh);
-        padding: 0px 1vw;
-        justify-content: space-around;
-        padding: 20px;
+        padding: 0px 2vw;
+        justify-content: center;
+        /* padding: 20px; */
     }
     .logo {
-        height: 100vh;
+        height: 50%;
+        width: calc(13vh - 3.5vw);
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
         overflow: hidden;
         box-shadow: 0 0 1px #4fa7ff;
-        /* margin: 2vw; */
-        border: 1px solid #4fa7ff;
+        margin: 2vw;
+        /* border: 1px solid #4fa7ff; */
     }
     header button {
         display: flex;
         width: calc(10vh - 2vh);
         border: 1px solid #fff;
         padding: 0.5vh 0vh;
-        
     }
     header button:hover,
     header button:focus,
     header button:active {
         transition: scale(1);
         border: 1px solid #fff;
+    }
+
+    header button i {
+        color: white;
+        font-size: 1.25em;
     }
 
     nav ul {

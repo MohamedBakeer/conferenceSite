@@ -32,6 +32,7 @@ Route::domain('{subdomain}.beko.com')->group(function () {
         })->toArray();
     }
     
+    
 
     Route::get('/', function ($subdomain) use ($allowedSubdomains) {
         Log::info('Subdomain accessed: ' . $subdomain);
@@ -45,12 +46,22 @@ Route::domain('{subdomain}.beko.com')->group(function () {
         $backgroundimages = backgroundimages($subdomain);
         $logoimages = logoimages($subdomain);
 
+        $details = [
+            'ConferenceName' => "المؤتمر الهندسي الخامس",
+            'ConferenceTo' => "لنقابة المهن الهندسية بالزاوية",
+            'Syndicatetext' => "الهندسة والذكاء الإصطناعي في تحقيق التنمية المستدامة لبناء الدولة",
+            'ConferenceDate' => "2025-12-14",
+        ];
+
+
         $arrPass = [
             'kaydomain' => $subdomain,
             'backgroundimages' => $backgroundimages,
-            'logoimages' => $logoimages
+            'logoimages' => $logoimages,
+            ...$details
         ];
-        return view('pages.home', $arrPass ); 
+
+        return view('pages.home', $arrPass); 
         // return response()->json($arrPass );
 
     });

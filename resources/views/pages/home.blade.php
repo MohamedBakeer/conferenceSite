@@ -10,15 +10,16 @@
 
   <section class="sec1">
     <div class="content">
-      <h1> المؤتمر الهندسي الخامس </h1>
-      <p>لنقابة المهن الهندسية بالزاوية</p>
-      <button>"الهندسة والذكاء الإصطناعي في تحقيق التنمية المستدامة لبناء الدولة"</button>
+      <h1>{{ $ConferenceName }}</h1>
+      <p>{{ $ConferenceTo }}</p>
+      <button>"{{ $Syndicatetext }}"</button>
     </div>
     <div class="timeStart">
-      <span>2028-12-07</span>
+      <span>{{ $ConferenceDate }}</span>
     </div>
   </section>
   <section class="sec2">
+    
   </section>
   <section class="sec3">
   </section>
@@ -55,6 +56,36 @@
         changeBackground();
         setInterval(changeBackground, 5000);
     });
+
+    function startCountdown() {
+    const targetDate = new Date("2025-3-3").setHours(0, 0, 0, 0);
+    const countdownElement = document.getElementById("countdown");
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+            countdownElement.innerHTML = "انتهى العد التنازلي";
+            clearInterval(interval);
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+        countdownElement.innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", startCountdown);
+
 </script>
 
 

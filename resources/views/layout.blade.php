@@ -57,10 +57,12 @@
                 document.querySelector("header > button").innerHTML = '<i class="fa-solid fa-caret-down"></i>';
                 // document.querySelector("header > nav > ul").style.left = "200vh";
                 document.querySelector("header > nav > ul").style.display = 'none';
+                document.querySelector(".Divition").style.filter = 'blur(0px)';
             } else {
                 document.querySelector("header > button").innerHTML = '<i class="fa-solid fa-xmark"></i>';
                 // document.querySelector("header > nav > ul").style.left = "0vh";
                 document.querySelector("header > nav > ul").style.display = 'flex';
+                document.querySelector(".Divition").style.filter = 'blur(100px)';
             }
             //document.querySelector("header > button > i").style.transform = "rotate(0deg)";
       }
