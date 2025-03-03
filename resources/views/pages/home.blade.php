@@ -39,6 +39,10 @@
       </div>
   </section>
   <section class="sec3">
+    <div class="imgLogo"><img src="{{ url('asset/image/logo/logo.png') }}" alt=""></div>
+    <div class="content">
+      <h2>مقدمة</h2>
+      <p>{{ $ConferenceIntroduction }}</p>
   </section>
 
   <script>
