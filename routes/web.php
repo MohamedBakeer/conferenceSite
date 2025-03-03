@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 
-Route::domain('{subdomain}.beko.com')->group(function () {
+Route::domain('{subdomain}.leaboz.org.ly')->group(function () {
 
     // قائمة الدومينات الفرعية المسموح بها
     $allowedSubdomains = ['b1', 'fifth'];
@@ -64,8 +64,8 @@ Route::domain('{subdomain}.beko.com')->group(function () {
             ...$details
         ];
 
-        return view('pages.home', $arrPass); 
-        // return response()->json($arrPass );
+        // return view('pages.home', $arrPass); 
+        return response()->json($arrPass );
 
     });
 
