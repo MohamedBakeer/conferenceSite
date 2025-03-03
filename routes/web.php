@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 Route::domain('{subdomain}.beko.com')->group(function () {
 
     // قائمة الدومينات الفرعية المسموح بها
-    $allowedSubdomains = ['b1', 'b2'];
+    $allowedSubdomains = ['b1', 'fifth'];
 
     function backgroundimages($subdomain) {
         $directoryPath = public_path('asset/image/background/'.$subdomain);
