@@ -19,12 +19,33 @@
     </div>
   </section>
   <section class="sec2">
-    
+    <div class="countdown">
+          <div class="time-box">
+              <span id="seconds" class="time">00</span>
+              <span class="label">ثانية</span>
+          </div>
+          <div class="time-box">
+              <span id="minutes" class="time">00</span>
+              <span class="label">دقيقة</span>
+          </div>
+          <div class="time-box">
+              <span id="hours" class="time">00</span>
+              <span class="label">ساعة</span>
+          </div>
+          <div class="time-box">
+              <span id="days" class="time">00</span>
+              <span class="label">ايام</span>
+          </div>
+      </div>
   </section>
   <section class="sec3">
   </section>
 
   <script>
+    let spanElement = document.querySelector(".timeStart > span");
+let year = spanElement.textContent.split('-')[0]; // استخراج السنة
+spanElement.innerHTML = `<span style="color:#fff; background-color: red; margin:0px 5px; padding:0px 20px; border-radius: 10px;">${year}</span>-` + spanElement.textContent.split('-').slice(1).join('-');
+
     document.addEventListener("DOMContentLoaded", function () {
         let images = [];
         let kaydomain = "{{ $kaydomain }}"; // تمرير متغير الدومين من Laravel
@@ -56,10 +77,14 @@
         changeBackground();
         setInterval(changeBackground, 5000);
     });
-
+    
     function startCountdown() {
-    const targetDate = new Date("2025-3-3").setHours(0, 0, 0, 0);
-    const countdownElement = document.getElementById("countdown");
+    const targetDate = new Date("{{ $ConferenceDate }}").setHours(0, 0, 0, 0);
+    // const countdownElement = document.getElementById("countdown");
+    const days = document.querySelector(".sec2 > .countdown > .time-box > #days");
+    const hours = document.querySelector(".sec2 > .countdown > .time-box > #hours");
+    const minutes = document.querySelector(".sec2 > .countdown > .time-box > #minutes");
+    const seconds = document.querySelector(".sec2 > .countdown > .time-box > #seconds");
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -76,8 +101,12 @@
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        countdownElement.innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
-        countdownElement.innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+        // countdownElement.innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+        // countdownElement.innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+        document.querySelector(".sec2 > .countdown > .time-box > #days").innerHTML = `${days}`;
+        document.querySelector(".sec2 > .countdown > .time-box > #hours").innerHTML = `${hours}`;
+        document.querySelector(".sec2 > .countdown > .time-box > #minutes").innerHTML = `${minutes}`;
+        document.querySelector(".sec2 > .countdown > .time-box > #seconds").innerHTML = `${seconds}`;
     }
 
     updateCountdown();

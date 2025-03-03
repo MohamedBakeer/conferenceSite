@@ -50,7 +50,7 @@ Route::domain('{subdomain}.beko.com')->group(function () {
             'ConferenceName' => "المؤتمر الهندسي الخامس",
             'ConferenceTo' => "لنقابة المهن الهندسية بالزاوية",
             'Syndicatetext' => "الهندسة والذكاء الإصطناعي في تحقيق التنمية المستدامة لبناء الدولة",
-            'ConferenceDate' => "2025-12-14",
+            'ConferenceDate' => "2025-6-1",
         ];
 
 
