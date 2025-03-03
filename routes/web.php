@@ -64,8 +64,8 @@ Route::domain('{subdomain}.leaboz.org.ly')->group(function () {
             ...$details
         ];
 
-        // return view('pages.home', $arrPass); 
-        return response()->json($arrPass );
+        return view('pages.home', $arrPass); 
+        // return response()->json($arrPass );
 
     });
 
