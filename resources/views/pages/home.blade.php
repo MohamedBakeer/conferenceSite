@@ -43,12 +43,17 @@
     <div class="content">
       <h2>مقدمة</h2>
       <p>{{ $ConferenceIntroduction }}</p>
+    </div>
   </section>
+@endsection
 
-  <script>
-    let spanElement = document.querySelector(".timeStart > span");
-let year = spanElement.textContent.split('-')[0]; // استخراج السنة
-spanElement.innerHTML = `<span style="color:#fff; background-color: red; margin:0px 5px; padding:0px 20px; border-radius: 10px;">${year}</span>-` + spanElement.textContent.split('-').slice(1).join('-');
+
+@section('scriptyield')
+<script>
+  
+    // let spanElement = document.querySelector(".timeStart > span");
+// let year = spanElement.textContent.split('-')[0]; // استخراج السنة
+// spanElement.innerHTML = `<span style="color:#fff; background-color: red; margin:0px 5px; padding:0px 20px; border-radius: 10px;">${year}</span>-` + spanElement.textContent.split('-').slice(1).join('-');
 
     document.addEventListener("DOMContentLoaded", function () {
         let images = [];
@@ -120,7 +125,4 @@ spanElement.innerHTML = `<span style="color:#fff; background-color: red; margin:
 document.addEventListener("DOMContentLoaded", startCountdown);
 
 </script>
-
-
-
 @endsection

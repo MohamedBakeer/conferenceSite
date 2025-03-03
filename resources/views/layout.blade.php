@@ -76,8 +76,10 @@
           document.querySelector("header").style.zIndex = 1000;
         }
       });
-
     </script>
+
+     <!-- scriptyield --> 
+    @yield('scriptyield')
 </body>
 
 </html>

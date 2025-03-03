@@ -4,10 +4,33 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 
-Route::domain('{subdomain}.leaboz.org.ly')->group(function () {
+
+function domainn() {
+    $host = request()->getHost();
+    $host_names = explode(".", $host);
+
+    // تحقق من أن المصفوفة تحتوي على نطاقين على الأقل
+    if (count($host_names) < 2) {
+        return $host; // أعد النطاق كما هو بدلاً من حدوث خطأ
+    }
+
+    $bottom_host_name = $host_names[count($host_names)-2] . "." . $host_names[count($host_names)-1];
+
+    return $bottom_host_name;
+}
+
+$domain = domainn();
+
+Route::domain('{subdomain}.'.$domain)->group(function () {
+    // Route::domain('{subdomain}.beko.com')->group(function () {
+    
 
     // قائمة الدومينات الفرعية المسموح بها
-    $allowedSubdomains = ['b1', 'fifth'];
+    $allowedSubdomains = [
+        'b1','sec','third','fourth','fifth','sixth','seventh','eighth',
+        'ninth','tenth','eleventh','twelfth','thirteenth','fourteenth','fifteenth',
+        'sixteenth','seventeenth','eighteenth','nineteenth','twentieth',
+    ];
 
     function backgroundimages($subdomain) {
         $directoryPath = public_path('asset/image/background/'.$subdomain);
@@ -66,6 +89,7 @@ Route::domain('{subdomain}.leaboz.org.ly')->group(function () {
 
         return view('pages.home', $arrPass); 
         // return response()->json($arrPass );
+        // return response()->json('dw');
 
     });
 
