@@ -298,6 +298,7 @@ footer > p >a {
         flex-direction: column;
         position: absolute;
         top: 17vh;
+        left: 0PX;
         /* left: 120vh; */
         width: 100%;
         background-color: transparent;
@@ -315,9 +316,9 @@ footer > p >a {
         text-align: center;
         /* font-size: 18px; */
         /* border: 1px solid #4fa7ff; */
-        padding: 1rem 1vw;
+        padding: calc(2vw + 0.5vh) 1vw;
         border-radius: 0;
-        font-size: calc(3vw - 0.01vw);
+        font-size: calc(5vw - 2.5vw);
     }
 
     nav ul a:hover,

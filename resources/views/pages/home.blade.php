@@ -39,11 +39,11 @@
       </div>
   </section>
   <section class="sec3">
-    <div class="imgLogo"><img src="{{ url('asset/image/logo/logo.png') }}" alt=""></div>
     <div class="content">
-      <h2>مقدمة</h2>
+      <h2>المقدمة</h2>
       <p>{{ $ConferenceIntroduction }}</p>
     </div>
+    <div class="imgLogo"><img src="{{ url('asset/image/logo/logo.png') }}" alt=""></div>
   </section>
 @endsection
 
