@@ -3,6 +3,7 @@
 @section('title', '| الرئيسية') 
 @section('stylo')
   <link rel="stylesheet" href="{{ url('asset/css/pages/home.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 @endsection
 
 @section('content')
@@ -43,7 +44,50 @@
       <h2>المقدمة</h2>
       <p>{{ $ConferenceIntroduction }}</p>
     </div>
-    <div class="imgLogo"><img src="{{ url('asset/image/logo/logo.png') }}" alt=""></div>
+    <div class="imgLogo"><img src="{{ url('asset/image/logo.png') }}" alt=""></div>
+  </section>
+  <section class="sec4">
+    <div class="continer">
+      <div class="top">
+        <div class="Organizing">
+          <h3>تنظيم نقابة المهن الهندسية بالزاوية</h3>
+          <p>وبالتعاون مع المجلس البلدي الزاوية وجامعة الزاوية والمؤسسة الوطنية للنفط والشركة العامة الكهرباء.</p>
+        </div>
+        <div class="photoFacebook">
+          <div class="continer">
+            @if ($Conferenceimages == '0')
+              <img src="{{ url('asset/image/Noneimage.png') }}" alt="comming soon">
+            @else
+              <img src="{{ url('asset/image/'.$kaydomain.'/Conferenceimg/'.$Conferenceimages[0]) }}" alt="comming soon">
+              <!-- <div class="navigation">
+                <i class="fa-solid fa-chevron-right"></i>
+                <i class="fa-solid fa-chevron-left"></i>
+              </div> -->
+            @endif
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec5">
+  <div class="slider">
+    <div class="slider-track">
+      
+    @if($Sponserimages == '0')         
+        @for ($i = 0; $i <= 20; $i++)
+        <img src="{{ url('asset/image/logo.png') }}" alt="Logo">
+        @endfor
+    @else
+    @for ($i = 0; $i <= 20; $i++)
+        @foreach ($Sponserimages as $img)
+            <img src="{{ url('asset/image/'.$kaydomain.'/Sponserimg/'.$img) }}" alt="Logo">
+        @endforeach   
+        @endfor
+    @endif
+
+    </div>
+</div>
   </section>
 @endsection
 
@@ -57,34 +101,44 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         let images = [];
-        let kaydomain = "{{ $kaydomain }}"; // تمرير متغير الدومين من Laravel
-        let imagesPath = "{{ url('asset/image/background/') }}/" + kaydomain + "/"; // المسار الأساسي
-
+        let imagesPath = "{{ url('asset/image/'.$kaydomain.'/background') }}"+'/'; // المسار الأساسي
         // تمرير الصور من Laravel إلى JavaScript
         @foreach ($backgroundimages as $img)
             images.push("{{ $img }}");
         @endforeach
-
         console.log("Loaded images:", images); // مراجعة الصور في وحدة التحكم
-
         let currentIndex = 0;
         let sec1 = document.querySelector(".sec1");
-
         function changeBackground() {
             if (images.length === 0) return; // تأكد من أن هناك صورًا
-
             // إضافة تأثير `linear-gradient` مع الصورة الجديدة
             sec1.style.backgroundImage = `
                 linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)),
                 url(${imagesPath}${images[currentIndex]})
             `;
-
             currentIndex = (currentIndex + 1) % images.length; // التنقل بين الصور
         }
-
         // تشغيل أول صورة وتبديلها كل 20 ثانية
         changeBackground();
         setInterval(changeBackground, 5000);
+
+
+        let imagesConference = [];
+        let imagesPathConference = "{{ url('asset/image/'.$kaydomain.'/Conferenceimg') }}"+'/'; // المسار الأساسي
+        // تمرير الصور من Laravel إلى JavaScript
+        @foreach ( $Conferenceimages as $img )
+        imagesConference.push("{{ $img }}");
+        @endforeach 
+
+        console.log("Loaded images:", imagesConference); // مراجعة الصور في وحدة التحكم
+        let currentIndex1 = 0;
+        function changeImagesConference() {
+          document.querySelector(".photoFacebook > .continer > img").src = imagesPathConference + imagesConference[currentIndex1];
+          currentIndex1 = (currentIndex1 + 1) % imagesConference.length; // التنقل بين الصور
+        }
+
+        changeImagesConference();
+        setInterval(changeImagesConference, 5000);
     });
     
     function startCountdown() {

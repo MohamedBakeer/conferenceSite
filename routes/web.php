@@ -21,8 +21,9 @@ function domainn() {
 
 $domain = domainn();
 
-Route::domain('{subdomain}.'.$domain)->group(function () {
-    // Route::domain('{subdomain}.beko.com')->group(function () {
+// Route::domain('{subdomain}.'.$domain)->group(function () {
+Route::domain('{subdomain}.beko.com')->group(function () {
+// Route::domain('{subdomain}.leaboz.org.ly')->group(function () {
     
 
     // قائمة الدومينات الفرعية المسموح بها
@@ -33,7 +34,7 @@ Route::domain('{subdomain}.'.$domain)->group(function () {
     ];
 
     function backgroundimages($subdomain) {
-        $directoryPath = public_path('asset/image/background/'.$subdomain);
+        $directoryPath = public_path('asset/image/'.$subdomain.'//background/');
 
         if (!File::isDirectory($directoryPath)) {
             abort(404, "Directory not found");
@@ -44,7 +45,7 @@ Route::domain('{subdomain}.'.$domain)->group(function () {
         })->toArray();
     }
     function logoimages($subdomain) {
-        $directoryPath = public_path('asset/image/logo/'.$subdomain);
+        $directoryPath = public_path('asset/image/'.$subdomain.'//logo/');
 
         if (!File::isDirectory($directoryPath)) {
             abort(404, "Directory not found");
@@ -55,6 +56,29 @@ Route::domain('{subdomain}.'.$domain)->group(function () {
         })->toArray();
     }
     
+    function Conferenceimages($subdomain) {
+        $directoryPath = public_path('asset/image/'.$subdomain.'//Conferenceimg/');
+
+        if (!File::isDirectory($directoryPath)) {
+            abort(404, "Directory not found");
+        }
+        
+        return collect(File::allFiles($directoryPath))->map(function ($file) use ($directoryPath) {
+            return str_replace($directoryPath . '/', '', $file->getRelativePathname());
+        })->toArray();
+    }
+
+    function Sponserimages($subdomain) {
+        $directoryPath = public_path('asset/image/'.$subdomain.'//Sponserimg/');
+
+        if (!File::isDirectory($directoryPath)) {
+            abort(404, "Directory not found");
+        }
+        
+        return collect(File::allFiles($directoryPath))->map(function ($file) use ($directoryPath) {
+            return str_replace($directoryPath . '/', '', $file->getRelativePathname());
+        })->toArray();
+    }
     
 
     Route::get('/', function ($subdomain) use ($allowedSubdomains) {
@@ -68,6 +92,14 @@ Route::domain('{subdomain}.'.$domain)->group(function () {
         // جلب الصور الخاصة بالدومين الفرعي
         $backgroundimages = backgroundimages($subdomain);
         $logoimages = logoimages($subdomain);
+        $Conferenceimages = Conferenceimages($subdomain);
+        if($Conferenceimages == null){
+            $Conferenceimages = "0";
+        }
+        $Sponserimages = Sponserimages($subdomain);
+        if($Sponserimages == null){
+            $Sponserimages = "0";
+        }
 
         $details = [
             'ConferenceName' => "المؤتمر الهندسي الخامس",
@@ -76,6 +108,8 @@ Route::domain('{subdomain}.'.$domain)->group(function () {
             'ConferenceDate' => "2025-12-14",
             'ConferenceIntroduction' => "في ظل التطورات المتسارعة التي يشهدها العالم في مجالات التكنولوجيا والذكاء الاصطناعي، أصبح من الضروري مواكبة هذه التطورات من خلال الأبحاث الهندسية المبتكرة. يأتي هذا المؤتمر الخامس لنقابة المهن الهندسية تحت عنوان “الهندسة والذكاء الاصطناعي: ابتكارات نحو مستقبل مستدام وذكي” ليكون منبرًا علميًا يتيح للباحثين والمختصين مناقشة أحدث التطبيقات والحلول التقنية والهندسية التي تسهم في بناء مستقبل أكثر استدامة وذكاءً.
       يهدف هذا المؤتمر إلى الجمع بين الخبرات العلمية والهندسية لدراسة التحديات الحالية واستشراف الفرص المستقبلية لتطوير البنى التحتية، الطاقة المتجددة، والصناعات الهندسية باستخدام تقنيات الذكاء الاصطناعي، بما يتوافق مع أهداف التنمية المستدامة.",
+            'Conferenceimages' => $Conferenceimages,
+            'Sponserimages' => $Sponserimages
         ];
 
 

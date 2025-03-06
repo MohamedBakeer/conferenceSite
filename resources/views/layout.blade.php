@@ -12,13 +12,13 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="{{ url('asset/css/style.css')}}">
-    <link rel="shortcut icon" href="{{ url('asset/image/logo/' . $kaydomain . '/' . $logoimages[0] ) }}" type="image/png">
+    <link rel="shortcut icon" href="{{ url('asset/image/' . $kaydomain . '//logo/' . $logoimages[0] ) }}" type="image/png">
     @yield('stylo')
 </head>
 <body dir="rtl">
     <header>
         <div class="logo">
-            <img src="{{ url('asset/image/logo/' . $kaydomain . '/' . $logoimages[0] ) }}" alt="logo">
+            <img src="{{ url('asset/image/' . $kaydomain . '//logo/' . $logoimages[0] ) }}" alt="logo">
         </div>
         <nav>
             <ul>
