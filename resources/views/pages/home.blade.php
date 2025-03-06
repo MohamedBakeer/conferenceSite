@@ -87,7 +87,24 @@
     @endif
 
     </div>
-</div>
+  </div>
+  </section>
+  <section class="sec6">
+    <div class="content">
+      <h2>⌛ مواعيد مهمة : </h2>
+      <ul>
+        @foreach ( $ImportantDates as $li)
+        <li>{{ $li }}</li>
+        @endforeach
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec7">
+    <div class="continer">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
   </section>
 @endsection
 

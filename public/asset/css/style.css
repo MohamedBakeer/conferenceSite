@@ -42,6 +42,7 @@ body {
     align-items: center;
     width: 100%;
     background-color: #fff;
+    background-color: rgba(245, 245, 245, 1);
     /* height: 100vh; */
     /* position: relative; */
 }
