@@ -27,8 +27,8 @@
 
 :root,
 * {
-    -ms-overflow-style: none; /* IE و Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
 }
 
 html {

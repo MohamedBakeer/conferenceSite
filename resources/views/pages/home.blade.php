@@ -102,8 +102,26 @@
 
   <section class="sec7">
     <div class="continer">
-      <div class="left"></div>
-      <div class="right"></div>
+      <div class="right">
+        <h2>مطوية {{ $ConferenceName }}</h2>
+        <div class="Thebrochure">
+          @if ($Thebrochureimages == '0')
+            <img src="{{ url('asset/image/Noneimage.png') }}" alt="comming soon">
+          @else
+          <img src="{{ url('asset/image/'.$kaydomain.'/Thebrochure/'.$Thebrochureimages[0]) }}" alt="comming soon">
+          <div class="navigation">
+            <i onclick="arrowChangeimg()" class="fa-solid fa-chevron-right"></i>
+            <i onclick="arrowChangeimg()" class="fa-solid fa-chevron-left"></i>
+          </div>
+        @endif
+
+        </div>
+      </div>
+      <div class="left">
+        <h2>للمشاركة</h2>
+        <p>للإطلاع على شروط الكتابة والمشاركة</p>
+        <a href="http://" target="_blank" rel="noopener noreferrer">اضغط هنا</a>
+      </div>
     </div>
   </section>
 @endsection
@@ -157,6 +175,25 @@
         changeImagesConference();
         setInterval(changeImagesConference, 5000);
     });
+
+    let Thebrochureimages = [];
+        let ThebrochureimagesPath = "{{ url('asset/image/'.$kaydomain.'/Thebrochure') }}"+'/'; // المسار الأساسي
+        // تمرير الصور من Laravel إلى JavaScript
+        @foreach ( $Thebrochureimages as $img )
+        Thebrochureimages.push("{{ $img }}");
+        @endforeach 
+
+        console.log("Loaded images:", Thebrochureimages , Thebrochureimages.length); // مراجعة الصور في وحدة التحكم
+
+        let currentimg = -1;
+        function arrowChangeimg() {
+          if(currentimg == Thebrochureimages.length-1){
+            currentimg = -1;
+          }
+          currentimg++;
+          document.querySelector(".sec7 > .continer > .right > .Thebrochure > img").src = ThebrochureimagesPath + Thebrochureimages[currentimg];
+        }
+        arrowChangeimg();
     
     function startCountdown() {
     const targetDate = new Date("{{ $ConferenceDate }}").setHours(0, 0, 0, 0);
