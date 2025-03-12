@@ -51,7 +51,7 @@
       <div class="top">
         <div class="Organizing">
           <h3>تنظيم نقابة المهن الهندسية بالزاوية</h3>
-          <p>وبالتعاون مع المجلس البلدي الزاوية وجامعة الزاوية والمؤسسة الوطنية للنفط والشركة العامة الكهرباء.</p>
+          <p>{{ $PartnersConference }}</p>
         </div>
         <div class="photoFacebook">
           <div class="continer">
@@ -108,18 +108,18 @@
           @if ($Thebrochureimages == '0')
             <img src="{{ url('asset/image/Noneimage.png') }}" alt="comming soon">
           @else
-          <img src="{{ url('asset/image/'.$kaydomain.'/Thebrochure/'.$Thebrochureimages[0]) }}" alt="comming soon">
-          <div class="navigation">
+          <img onclick="arrowChangeimg()" src="{{ url('asset/image/'.$kaydomain.'/Thebrochure/'.$Thebrochureimages[0]) }}" alt="comming soon">
+          {{-- <div class="navigation">
             <i onclick="arrowChangeimg()" class="fa-solid fa-chevron-right"></i>
             <i onclick="arrowChangeimg()" class="fa-solid fa-chevron-left"></i>
-          </div>
+          </div> --}}
         @endif
 
         </div>
       </div>
       <div class="left">
         <h2>للمشاركة</h2>
-        <p>للإطلاع على شروط الكتابة والمشاركة</p>
+        <p>الإطلاع على شروط الكتابة والمشاركة</p>
         <a href="http://" target="_blank" rel="noopener noreferrer">اضغط هنا</a>
       </div>
     </div>

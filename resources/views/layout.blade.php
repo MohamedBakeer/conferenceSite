@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $kaydomain }} @yield('title') </title>
+    <title>{{ $ConferenceName }} @yield('title') </title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -22,8 +22,9 @@
         </div>
         <nav>
             <ul>
-                <a href="#">الرئيسية</a>
-                <a href="#">الأهداف والمحاور</a>
+                <a href="{{ route('homePage', ['subdomain' => request()->route('subdomain')]) }}">الرئيسية</a>
+                <a href="{{ route('Objectivesandthemes', ['subdomain' => request()->route('subdomain')]) }}">الأهداف والمحاور</a>
+
                 <a href="#">شروط الكتابة والمشاركة</a>
                 <a href="#">الورقات البحثية</a>
                 <a href="#">ارسال البحوث</a>
@@ -39,9 +40,9 @@
     <div class="Divition" id="Divition">@yield('content')</div>
     <footer>
         <div class="top">
-            <a href="https://www.facebook.com/leaboz.org.l.y" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://wa.me/218916786604" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="tel:+218916786604" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-phone"></i></a>
+            <a href="{{$facebookurl}}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://wa.me/{{ $whatsAppurl }}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:+{{ $phoneNUMBER }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-phone"></i></a>
         </div>
         <p>Created By <a href="https://www.facebook.com/mohamed.bakeer.1884" target="_blank">MNB</a> | © 2019-<span>2022</span> All rights reserved</p>    
     </footer>
