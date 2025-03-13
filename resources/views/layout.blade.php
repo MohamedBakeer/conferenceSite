@@ -25,7 +25,7 @@
                 <a href="{{ route('homePage', ['subdomain' => request()->route('subdomain')]) }}">الرئيسية</a>
                 <a href="{{ route('Objectivesandthemes', ['subdomain' => request()->route('subdomain')]) }}">الأهداف والمحاور</a>
 
-                <a href="#">شروط الكتابة والمشاركة</a>
+                <a href="{{ route('writingandparticipating', ['subdomain' => request()->route('subdomain')]) }}">شروط الكتابة والمشاركة</a>
                 <a href="#">الورقات البحثية</a>
                 <a href="#">ارسال البحوث</a>
                 <a href="#">منظمي ورعاة المؤتمر</a>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Objectivesandthemes;
+use App\Http\Controllers\writingandparticipating;
 use App\Models\conferenceData;
 use App\Models\home_page_details;
 use App\Models\hyper_links;
@@ -25,6 +26,9 @@ Route::domain('{subdomain}.beko.com')->group(function () {
     Route::controller(Objectivesandthemes::class)->group(function () {
         Route::get('/Objectivesandthemes', 'index')->name('Objectivesandthemes');
     });
-
+    
+    Route::controller(writingandparticipating::class)->group(function () {
+        Route::get('/writingandparticipating', 'index')->name('writingandparticipating');
+    });
 
 });
