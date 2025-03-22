@@ -87,7 +87,8 @@ header {
 /* تنسيق الـ Accordion */
 .accordion {
     width: 100%;
-    /* border: 1px solid red; */
+    
+    border-top: 1px solid #ccc;
 }
 
 .accordion-item {
@@ -182,3 +183,16 @@ header {
 
 
 
+@media (max-width: 1000px) {
+
+    .sec1 {
+        padding: 0% 0%;
+    }
+    .sec1 > .content{
+        width: 100%;
+    }
+    .sec1 > .content > h2{
+        padding: 5px;
+    }
+
+}

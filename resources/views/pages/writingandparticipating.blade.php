@@ -147,9 +147,24 @@
                     </div>
             </div>
             <div class="downdiv">
-                <a href="http://" target="_blank" rel="noopener noreferrer">تحميل شروط الكتاب PDF</a>
-                <a href="http://" target="_blank" rel="noopener noreferrer">تحميل شروط الكتاب PDF</a>
-                <a href="http://" target="_blank" rel="noopener noreferrer">قالب كتابة الورقة (english)</a>
+                @if ($Paperwritingtemplate_ar === '0')
+                    <a href="#" rel="noopener noreferrer">قالب كتابة الورقة (عربي)</a>
+                @else
+                    <a href="{{ url('asset/image/' . $kaydomain . '/Writingandparticipating/Paperwritingtemplate(ar)/' . $Paperwritingtemplate_ar[0] ) }}" rel="noopener noreferrer">قالب كتابة الورقة (عربي)</a>
+                @endif
+
+                @if ($pdfwritingtemplate === '0')
+                <a href="#" rel="noopener noreferrer">تحميل شروط الكتاب PDF</a>
+                @else
+                <a href="{{ url('asset/image/' . $kaydomain . '/Writingandparticipating/pdfwritingtemplate/' . $pdfwritingtemplate[0] ) }}" rel="noopener noreferrer">تحميل شروط الكتاب PDF</a>
+                @endif
+
+                @if ($Paperwritingtemplate_en === '0')
+                <a href="#" rel="noopener noreferrer">قالب كتابة الورقة (english)</a>
+                @else
+                <a href="{{ url(path: 'asset/image/' . $kaydomain . '/Writingandparticipating/Paperwritingtemplate(en)/' . $Paperwritingtemplate_en[0] ) }}" rel="noopener noreferrer">قالب كتابة الورقة (english)</a>
+                @endif
+                
             </div>
         </div>
     </section>

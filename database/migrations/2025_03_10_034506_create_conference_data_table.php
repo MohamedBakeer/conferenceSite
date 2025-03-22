@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('SubDomainConference')->comment('العنوان الفرعي هذا المفتاح');
             $table->text('dateConference')->comment('تاريخ إنطلاق المؤتمر');
             $table->text('activationConference')->comment('حالة المؤتمر')->default('inactive');
+            $table->text('Receivingpapers')->comment('إستقبال الورقات')->default('inactive');
             $table->timestamps();
         });
     }

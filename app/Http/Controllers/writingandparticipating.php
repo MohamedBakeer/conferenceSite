@@ -37,6 +37,45 @@ class writingandparticipating extends Controller
         })->toArray();
     }
 
+    function pdfwritingtemplate($subdomain)
+    {
+        $directoryPath = public_path('asset/image/' . $subdomain . '//Writingandparticipating/pdfwritingtemplate');
+
+        if (!File::isDirectory($directoryPath)) {
+            abort(404, "Directory not found");
+        }
+
+        return collect(File::allFiles($directoryPath))->map(function ($file) use ($directoryPath) {
+            return str_replace($directoryPath . '/', '', $file->getRelativePathname());
+        })->toArray();
+    }
+
+    function Paperwritingtemplate_en($subdomain)
+    {
+        $directoryPath = public_path('asset/image/' . $subdomain . '//Writingandparticipating/Paperwritingtemplate(en)');
+
+        if (!File::isDirectory($directoryPath)) {
+            abort(404, "Directory not found");
+        }
+
+        return collect(File::allFiles($directoryPath))->map(function ($file) use ($directoryPath) {
+            return str_replace($directoryPath . '/', '', $file->getRelativePathname());
+        })->toArray();
+    }
+
+    function Paperwritingtemplate_ar($subdomain)
+    {
+        $directoryPath = public_path('asset/image/' . $subdomain . '//Writingandparticipating/Paperwritingtemplate(ar)');
+
+        if (!File::isDirectory($directoryPath)) {
+            abort(404, "Directory not found");
+        }
+
+        return collect(File::allFiles($directoryPath))->map(function ($file) use ($directoryPath) {
+            return str_replace($directoryPath . '/', '', $file->getRelativePathname());
+        })->toArray();
+    }
+
 
     public function index($subdomain)
     {
@@ -68,6 +107,26 @@ class writingandparticipating extends Controller
                 $ConferenceName = conferenceData::where('SubDomainConference', $primaryKey)->value('nameConference');
                 $logoimages = $this->logoimages($subdomain);
                 $backgroundimages = $this->backgroundimages($subdomain);
+                
+                $Paperwritingtemplate_en = $this->Paperwritingtemplate_en($subdomain);
+                if ($Paperwritingtemplate_en == null) {
+                    $Paperwritingtemplate_en = "0";
+                }
+                $Paperwritingtemplate_ar = $this->Paperwritingtemplate_ar($subdomain);
+                if ($Paperwritingtemplate_ar == null) {
+                    $Paperwritingtemplate_ar = "0";
+                }
+                $pdfwritingtemplate = $this->pdfwritingtemplate($subdomain);
+                if ($pdfwritingtemplate == null) {
+                    $pdfwritingtemplate = "0";
+                }
+
+                $folders = [
+                    'Paperwritingtemplate_en' => $Paperwritingtemplate_en,
+                    'Paperwritingtemplate_ar'=> $Paperwritingtemplate_ar,
+                    'pdfwritingtemplate'=> $pdfwritingtemplate,
+                    
+                ];
 
                 $ImportantDates = important_dates::where('SubDomainConference', $primaryKey)
                 ->pluck('event')
@@ -79,7 +138,8 @@ class writingandparticipating extends Controller
                     'logoimages' => $logoimages,
                     'backgroundimages' => $backgroundimages,
                     'ImportantDates' => $ImportantDates,
-                    ...$hyper_LINKS
+                    ...$hyper_LINKS,
+                    ...$folders
                 ];
 
                 return view('pages.writingandparticipating', $arrPass);
