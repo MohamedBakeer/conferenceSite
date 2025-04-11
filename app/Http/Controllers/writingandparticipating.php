@@ -132,10 +132,13 @@ class writingandparticipating extends Controller
                 ->pluck('event')
                 ->toArray();
 
+                $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'logoimages' => $logoimages,
+                    'Receivingpapers' => $Receivingpapers,
                     'backgroundimages' => $backgroundimages,
                     'ImportantDates' => $ImportantDates,
                     ...$hyper_LINKS,

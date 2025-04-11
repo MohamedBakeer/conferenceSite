@@ -17,6 +17,9 @@ return new class extends Migration
             $table->text('facebookurl');
             $table->text('whatsAppurl');
             $table->text('phoneNUMBER');
+            $table->text('faxNUMBER');
+            $table->text('CMT3url')->comment('رابط CMT3');
+            $table->text('Attendanceurl')->comment('رابط Google Form');
             $table->timestamps();
         });
     }

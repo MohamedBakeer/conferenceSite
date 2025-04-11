@@ -4,6 +4,7 @@ use App\Http\Controllers\conferenceExhibition;
 use App\Http\Controllers\contactus;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Objectivesandthemes;
+use App\Http\Controllers\organizersandsponsors;
 use App\Http\Controllers\researchpapers;
 use App\Http\Controllers\Sendresearch;
 use App\Http\Controllers\writingandparticipating;
@@ -51,6 +52,10 @@ Route::domain('{subdomain}.beko.com')->group(function () {
 
     Route::controller(conferenceExhibition::class)->group(function () {
         Route::get('/conferenceExhibition', 'index')->name('conferenceExhibition');
+    });
+
+    Route::controller(organizersandsponsors::class)->group(function () {
+        Route::get('/organizersandsponsors', 'index')->name('organizersandsponsors');
     });
 
 });

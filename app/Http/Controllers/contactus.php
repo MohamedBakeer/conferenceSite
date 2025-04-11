@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\committees;
 use App\Models\conferenceData;
 use App\Models\hyper_links;
 use File;
@@ -55,10 +56,12 @@ class contactus extends Controller
                 $facebookurl = hyper_links::where('SubDomainConference', $primaryKey)->value('facebookurl');
                 $whatsAppurl = hyper_links::where('SubDomainConference', $primaryKey)->value('whatsAppurl');
                 $phoneNUMBER = hyper_links::where('SubDomainConference', $primaryKey)->value('phoneNUMBER');
+                $faxNUMBER = hyper_links::where('SubDomainConference', $primaryKey)->value('faxNUMBER');
                 $hyper_LINKS = [
                     'facebookurl' => $facebookurl,
                     'whatsAppurl' => $whatsAppurl,
-                    'phoneNUMBER' => $phoneNUMBER
+                    'phoneNUMBER' => $phoneNUMBER,
+                    'faxNUMBER' => $faxNUMBER,
                 ];
 
 
@@ -66,11 +69,18 @@ class contactus extends Controller
                 $logoimages = $this->logoimages($subdomain);
                 $backgroundimages = $this->backgroundimages($subdomain);
 
+                $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
+
+                $Committeemembers = committees::where('SubDomainConference', $primaryKey)->get();
+
+                
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
+                    'Receivingpapers' => $Receivingpapers,
                     'logoimages' => $logoimages,
                     'backgroundimages' => $backgroundimages,
+                    'Committeemembers' => $Committeemembers,
                     ...$hyper_LINKS
                 ];
 

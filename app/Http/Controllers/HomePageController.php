@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\sponsors;
 use File;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,7 @@ class HomePageController extends Controller
 
     function Sponserimages($subdomain)
     {
-        $directoryPath = public_path('asset/image/' . $subdomain . '//Sponserimg/');
+        $directoryPath = public_path('asset/image/' . $subdomain . '//staticSponsors/');
 
         if (!File::isDirectory($directoryPath)) {
             abort(404, "Directory not found");
@@ -132,7 +133,9 @@ class HomePageController extends Controller
                 if ($Sponserimages == null) {
                     $Sponserimages = "0";
                 }
-                
+                // $Sponserimages = sponsors::where('SubDomainConference', $primaryKey)->get();
+
+
                 $Thebrochureimages = $this->Thebrochureimages($subdomain);
                 if ($Thebrochureimages == null) {
                     $Thebrochureimages = "0";
@@ -163,16 +166,22 @@ class HomePageController extends Controller
                     'phoneNUMBER' => $phoneNUMBER
                 ];
 
+                $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'backgroundimages' => $backgroundimages,
                     'logoimages' => $logoimages,
+                    'Receivingpapers' => $Receivingpapers,
                     ...$details ,
                     ...$files_public,
                     ...$hyper_LINKS
                 ];
 
+
+
                 return view('pages.home', $arrPass);
+                // return response()->json($arrPass);
             }
         }
 

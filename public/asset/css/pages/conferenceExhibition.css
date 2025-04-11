@@ -1,6 +1,6 @@
 .Divition {
     width: 100%;
-    /* height: 100vh; */
+    height: 100vh;
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
@@ -10,85 +10,117 @@
     filter: blur(0px);
     /* background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));  */
 }
-
-/* ------------------Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+section {
     width: 100%;
-    height: 15vh;
-    background-color: #444444; /* إضافة خلفية لتجنب الشفافية */
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-    padding: 0px 1vw;
-    position: relative;
-    top: 0;
-    z-index: 1000;
+    /* height: 100vh; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
 }
 
 .sec1 {
     width: 100%;
     height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     position: relative;
     display: flex;
-    /* justify-content: center; */
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    /* border: 1px solid red; */
-    padding: 2% 0%;
+    /* flex-direction: column; */
+    padding: 10px;
+    padding-top: 15vh;
+    /* margin: 15vh 0px ; */
 }
 
-.sec1 > h2{
-    text-align: center;
-    margin: 15px 0px ;
-    color: #464646;
-    filter: drop-shadow(0px 0px 10px #808080);
-    border-top: 2px solid #464646;
-    width: 80%;
+.sec1 > div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0px 1%;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+    box-shadow: 0px 0px 5px rgb(255, 255, 255);
     border-radius: 20px;
 }
-.sec1 > .content {
-    width: 80%;
-    height: 70%;
-    /* border: 1px solid blue; */
+
+.sec1 > div {
     display: flex;
+    /* justify-content: center; */
     align-items: center;
-    justify-content: space-evenly;
-    /* flex-direction: column; */
-    /* padding: 10px; */
+    flex-direction: column;
+    /* border: 1px solid green; */
 }
-
-
-@media (max-width : 1000px ) {
-    
-}
-
-
-.abort {
+.sec1 > div > .header {
     width: 100%;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: auto;
     /* border: 1px solid red; */
+    border-bottom: #dddddd 3px solid;
+    padding-right: 3vw;
 }
-.abort > h1 {
-    padding: 0.7vw 1.5vw;
-    background-color: #444444;
+.sec1 > div > .header > h1 {
+    font-size: clamp(24px, 1.5vw, 48px); /* يضمن تناسب الحجم مع الشاشات */
+    font-weight: 700;
+    /* margin: 15px 0; */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* ظل خفيف بدون تشويش زائد */
+    color: #dddddd;
     color: #fff;
-    border-radius: 10px;
-    cursor: default;
+    color: black;
+}
+
+.sec1 > div > ul {
+    width: 100%;
+    height: 100%;
+    padding-right: 4vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: clamp(20px , 1vw , 28px);
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    list-style-type: decimal;
+    overflow: scroll;
+    padding-top: 15px;
 }
-.abort > h1:hover {
-    padding: 0.5% 3%;
-    background-color: #444444;
+.sec1 > div > ul > li {
+    /* border: 1px solid red; */
+    margin: 5px 10px;
+    font-size: large;
+    font-weight: 600;
+    font-size: clamp(12px, 1rem, 20px); /* يضمن تناسب الحجم مع الشاشات */
     color: #fff;
-    border-radius: 25px;
-    transform: scale(1.1);
+    color: black;
+    padding-right: 5px;
+}
+
+
+@media (max-width: 1000px) { 
+    .sec1 {
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px;
+        padding-top: 15vh;
+        /* margin: 15vh 0px ; */
+    }
+
+    .sec1 > div {
+        margin: 2%;
+    }
+
+
+    .sec1 > div > ul {
+        overflow-y: scroll;
+        padding-top: 0px;
+    }
+    .sec1 > div > ul > li {
+        font-size: clamp(12px, 0.85rem, 20px); /* يضمن تناسب الحجم مع الشاشات */
+        margin: 5px;
+    }    
 }

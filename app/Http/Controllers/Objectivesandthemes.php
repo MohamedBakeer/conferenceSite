@@ -85,10 +85,13 @@ class Objectivesandthemes extends Controller
                 $logoimages = $this->logoimages($subdomain);
                 $backgroundimages = $this->backgroundimages($subdomain);
 
+                $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'logoimages' => $logoimages,
+                    'Receivingpapers' => $Receivingpapers,
                     'backgroundimages' => $backgroundimages,
                     'topics' => $formattedTopics, // هنا البيانات الجديدة
                     'objectives' => $objectives ,

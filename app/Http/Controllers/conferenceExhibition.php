@@ -3,13 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\conferenceData;
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
 use App\Models\hyper_links;
+
+use App\Models\objectives;
+
 use File;
 use Illuminate\Http\Request;
 
 class conferenceExhibition extends Controller
 {
-    
+    //
+    function backgroundimages($subdomain)
+    {
+        $directoryPath = public_path('asset/image/' . $subdomain . '//background/');
+
+        if (!File::isDirectory($directoryPath)) {
+            abort(404, "Directory not found");
+        }
+
+        return collect(File::allFiles($directoryPath))->map(function ($file) use ($directoryPath) {
+            return str_replace($directoryPath . '/', '', $file->getRelativePathname());
+        })->toArray();
+    }
 
 
     function logoimages($subdomain)
@@ -25,7 +42,8 @@ class conferenceExhibition extends Controller
         })->toArray();
     }
 
-    public function index(Request $request, $subdomain)
+
+    public function index($subdomain)
     {
 
         // Log::info('Subdomain accessed: ' . $subdomain);
@@ -49,19 +67,34 @@ class conferenceExhibition extends Controller
                     'phoneNUMBER' => $phoneNUMBER
                 ];
 
+                
+
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
+
 
                 $ConferenceName = conferenceData::where('SubDomainConference', $primaryKey)->value('nameConference');
                 $logoimages = $this->logoimages($subdomain);
+                $backgroundimages = $this->backgroundimages($subdomain);
+
+
+                $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
 
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'logoimages' => $logoimages,
+                    'Receivingpapers' => $Receivingpapers,
+                    'backgroundimages' => $backgroundimages,
+                    'exhibitionobjectives' => $exhibitionobjectives ,
+                    'exhibitionincludes' => $exhibitionincludes ,
+
                     ...$hyper_LINKS
                 ];
 
                 return view('pages.conferenceExhibition', $arrPass);
                 // return response()->json($arrPass);
+
             }
         }
     }

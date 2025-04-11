@@ -42,7 +42,7 @@
   <section class="sec3">
     <div class="content">
       <h2>المقدمة</h2>
-      <p>{{ $ConferenceIntroduction }}</p>
+      <p>{!! $ConferenceIntroduction !!}</p>
     </div>
     <div class="imgLogo"><img src="{{ url('asset/image/logo.png') }}" alt=""></div>
   </section>
@@ -74,14 +74,14 @@
   <div class="slider">
     <div class="slider-track">
       
-    @if($Sponserimages == '0')         
-        @for ($i = 0; $i <= 20; $i++)
+    @if($Sponserimages == "0")         
+        @for ($i = 0; $i <= 50; $i++)
         <img src="{{ url('asset/image/logo.png') }}" alt="Logo">
         @endfor
     @else
-    @for ($i = 0; $i <= 20; $i++)
+    @for ($i = 0; $i <= 50; $i++)
         @foreach ($Sponserimages as $img)
-            <img src="{{ url('asset/image/'.$kaydomain.'/Sponserimg/'.$img) }}" alt="Logo">
+            <img src="{{ url('asset/image/'.$kaydomain.'/staticSponsors//'.$img) }}" alt="Logo">
         @endforeach   
         @endfor
     @endif
@@ -120,7 +120,7 @@
       <div class="left">
         <h2>للمشاركة</h2>
         <p>الإطلاع على شروط الكتابة والمشاركة</p>
-        <a href="http://" target="_blank" rel="noopener noreferrer">اضغط هنا</a>
+        <a href="{{ route('writingandparticipating', ['subdomain' => request()->route('subdomain')]) }}" target="_blank" rel="noopener noreferrer">اضغط هنا</a>
       </div>
     </div>
   </section>

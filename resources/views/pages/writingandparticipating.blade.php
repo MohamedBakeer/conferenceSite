@@ -90,7 +90,8 @@
                             <button class="accordion-button">ثامناً: وسائل التواصل وتسليم الأبحاث</button>
                             <div class="accordion-content">
                                 <ul>
-                                    <li>تُقدم الملخصات والبحوث عبر البريد الالكتروني  sec-sc@leaboz.org.ly  sec@leaboz.org.ly </li>
+                                    <li>يتم استقبال الملخصات من خلال خانة "إرسال الملخصات" على الموقع الإلكتروني، أو عبر البريد الإلكتروني <a href="mailto: {{ $kaydomain }}@leaboz.org.ly">{{ $kaydomain }}@leaboz.org.ly</a>.</li>
+                                    <li>تقدم الورقات البحثية عن طريق  <a href="https://cmt3.research.microsoft.com/User/Login" target="_blank" rel="noopener noreferrer">منصة مايكروسوفت CMT3</a> مرفقة مع السيرة الذاتية للمؤلف</li>
                                     <li>تخضع الملخصات للتحكيم العلمي من قبل متخصصين في مجالاتها، وسيُنشر المقبول منها بمجلد وقائع المؤتمر.</li>
                                 </ul>
                             </div>

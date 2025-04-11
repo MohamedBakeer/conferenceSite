@@ -418,3 +418,42 @@ footer > p >a {
     }
 
 }
+
+
+
+.switchLang{
+    position: fixed;
+    bottom: 0px;
+    left: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    padding: 10px 25px;
+    margin: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    /* background-color: #4fa7ff; */
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #222;
+    transition: all 0.3s ease-in-out 0.1s;
+    
+    z-index: 2000;
+}
+
+.switchLang:hover {
+    background-color: #222;
+    box-shadow: 0px 0px 10px #222;
+    transform: scale(1.05);
+    i {
+        color: #fff;
+    }
+}
+
+.switchLang > i {
+    font-size: 1.5rem;
+    color: #333;
+}

@@ -58,10 +58,24 @@ class Sendresearch extends Controller
                 $facebookurl = hyper_links::where('SubDomainConference', $primaryKey)->value('facebookurl');
                 $whatsAppurl = hyper_links::where('SubDomainConference', $primaryKey)->value('whatsAppurl');
                 $phoneNUMBER = hyper_links::where('SubDomainConference', $primaryKey)->value('phoneNUMBER');
+                $CMT3url = hyper_links::where('SubDomainConference', $primaryKey)->value('CMT3url');
+                $Attendanceurl = hyper_links::where('SubDomainConference', $primaryKey)->value('Attendanceurl');
+                if ($facebookurl == null) {
+                    $facebookurl = '';
+                }
+                if ($whatsAppurl == null) {
+                    $whatsAppurl = '';
+                }
+                if ($phoneNUMBER == null) {
+                    $phoneNUMBER = '';  
+                }
+
                 $hyper_LINKS = [
                     'facebookurl' => $facebookurl,
                     'whatsAppurl' => $whatsAppurl,
-                    'phoneNUMBER' => $phoneNUMBER
+                    'phoneNUMBER' => $phoneNUMBER,
+                    'CMT3url' => $CMT3url,
+                    'Attendanceurl' => $Attendanceurl,
                 ];
 
                 

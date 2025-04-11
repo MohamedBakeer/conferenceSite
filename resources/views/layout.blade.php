@@ -16,6 +16,7 @@
     @yield('stylo')
 </head>
 <body dir="rtl">
+    <button class="switchLang"><i class="fa-solid fa-globe"></i></button>
     <header>
         <div class="logo">
             <img src="{{ url('asset/image/' . $kaydomain . '//logo/' . $logoimages[0] ) }}" alt="logo">
@@ -27,9 +28,12 @@
                 <a href="{{ route('writingandparticipating', ['subdomain' => request()->route('subdomain')]) }}">شروط الكتابة والمشاركة</a>
 
                 <a href="{{ route('researchpapers', ['subdomain' => request()->route('subdomain')]) }}">الورقات البحثية</a>
-                <a href="{{ route('Sendresearch', ['subdomain' => request()->route('subdomain')]) }}">ارسال البحوث</a>
+    
+                @if ($Receivingpapers === 'active')
+                    <a href="{{ route('Sendresearch', ['subdomain' => request()->route('subdomain')]) }}">ارسال البحوث</a>
+                @endif
 
-                <a href="#" >منظمي ورعاة المؤتمر</a>
+                <a href="{{ route('organizersandsponsors', ['subdomain' => request()->route('subdomain')]) }}" >منظمي ورعاة المؤتمر</a>
                 <a href="{{ route('conferenceExhibition', ['subdomain' => request()->route('subdomain')]) }}" >معرض المؤتمر</a>
 
                 <a href="{{ route('contactus', ['subdomain' => request()->route('subdomain')]) }}" >اتصل بنا</a>
@@ -75,12 +79,24 @@
         if (window.scrollY >= 1) {
           document.querySelector("header").style.opacity = 0;
           document.querySelector("header").style.zIndex = -10;
+          document.querySelector(".switchLang").style.opacity = 0;
+          document.querySelector(".switchLang").style.zIndex = -10;
         } else {
           document.querySelector("header").style.opacity = 1;
           document.querySelector("header").style.zIndex = 1000;
+          document.querySelector(".switchLang").style.opacity = 1;
+          document.querySelector(".switchLang").style.zIndex = 2000;
         }
       });
+
+
+        document.querySelector(".switchLang").addEventListener("click", () => {
+            alert("اللغة الإنجليزية قيد التطوير - English language under development");
+        });
     </script>
+
+
+    
 
      <!-- scriptyield --> 
     @yield('scriptyield')

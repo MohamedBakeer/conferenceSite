@@ -40,19 +40,11 @@
                     </table>
                 </div>
 
-
-
-
                 {{-- ✅ إضافة Pagination --}}
                 <div class="pagination">
                     {{ $papers->links() }}
                 </div>
-
             </div>
-
-
-
-
         </section>
     @else
         <div class="abort">
