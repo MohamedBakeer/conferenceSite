@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="مؤتمرات الزاوية الهندسية والتقنية">
+    <meta name="keywords" content="مؤتمر الزاوية الدولي للعلوم الهندسية والتقنية, الزاوية, ليبيا, علوم هندسية, تقنية">
+    <meta name="author" content="Mohamed Nouri Bakeer">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="copyright" content="Mohamed Nouri Bakeer">
+    <meta name="author" content="Mohamed Nouri Bakeer">
+
     <title>{{ $ConferenceName }} @yield('title') </title>
     <link
       rel="stylesheet"
@@ -16,29 +24,66 @@
     @yield('stylo')
 </head>
 <body dir="rtl">
-    <button class="switchLang"><i class="fa-solid fa-globe"></i></button>
-    <header>
+    <a class="switchLang" href="{{ route('switch-cookie', ['subdomain' => request()->route('subdomain')]) }}"><i class="fa-solid fa-globe"></i></a>
+    
+        @if ($lang_dom == 'ar')
+        <header dir="rtl">
+        @elseif ($lang_dom == 'en')
+        <header dir="ltr">
+        @endif
         <div class="logo">
             <img src="{{ url('asset/image/' . $kaydomain . '//logo/' . $logoimages[0] ) }}" alt="logo">
         </div>
         <nav>
-            <ul>
-                <a href="{{ route('homePage', ['subdomain' => request()->route('subdomain')]) }}">الرئيسية</a>
-                <a href="{{ route('Objectivesandthemes', ['subdomain' => request()->route('subdomain')]) }}">الأهداف والمحاور</a>
-                <a href="{{ route('writingandparticipating', ['subdomain' => request()->route('subdomain')]) }}">شروط الكتابة والمشاركة</a>
+            @if ($lang_dom == 'ar')
+                <ul>
+                    <a href="{{ route('homePage', ['subdomain' => request()->route('subdomain')]) }}">الرئيسية</a>
+                    <a href="{{ route('Objectivesandthemes', ['subdomain' => request()->route('subdomain')]) }}">الأهداف والمحاور</a>
+                    <a href="{{ route('writingandparticipating', ['subdomain' => request()->route('subdomain')]) }}">شروط الكتابة والمشاركة</a>
 
-                <a href="{{ route('researchpapers', ['subdomain' => request()->route('subdomain')]) }}">الورقات البحثية</a>
-    
+                    @if ($isResearchApproved > 0)
+                        <a href="{{ route('researchpapers', ['subdomain' => request()->route('subdomain')]) }}">الورقات البحثية</a>
+                    @endif
+        
+                    @if ($Receivingpapers === 'active')
+                        <a href="{{ route('Sendresearch', ['subdomain' => request()->route('subdomain')]) }}">ارسال البحوث</a>
+                    @endif
+
+                    <a href="{{ route('organizersandsponsors', ['subdomain' => request()->route('subdomain')]) }}" >منظمي ورعاة المؤتمر</a>
+
+                    @if ($exhibitionincludes_count > 0 || $exhibitionobjectives_count > 0)
+                        <a href="{{ route('conferenceExhibition', ['subdomain' => request()->route('subdomain')]) }}" >معرض المؤتمر</a>
+                    @endif
+
+
+                    <a href="{{ route('contactus', ['subdomain' => request()->route('subdomain')]) }}" >اتصل بنا</a>
+                    
+                </ul>
+            @elseif ($lang_dom == 'en')
+            <ul>
+                <a href="{{ route('homePage', ['subdomain' => request()->route('subdomain')]) }}">Home</a>
+                <a href="{{ route('Objectivesandthemes', ['subdomain' => request()->route('subdomain')]) }}">Objectives and themes</a>
+                <a href="{{ route('writingandparticipating', ['subdomain' => request()->route('subdomain')]) }}">Writing and Participation Guidelines</a>
+
+                @if ($isResearchApproved > 0)
+                <a href="{{ route('researchpapers', ['subdomain' => request()->route('subdomain')]) }}">Research Papers</a>
+                @endif
+                
                 @if ($Receivingpapers === 'active')
-                    <a href="{{ route('Sendresearch', ['subdomain' => request()->route('subdomain')]) }}">ارسال البحوث</a>
+                    <a href="{{ route('Sendresearch', ['subdomain' => request()->route('subdomain')]) }}">Paper Submission</a>
                 @endif
 
-                <a href="{{ route('organizersandsponsors', ['subdomain' => request()->route('subdomain')]) }}" >منظمي ورعاة المؤتمر</a>
-                <a href="{{ route('conferenceExhibition', ['subdomain' => request()->route('subdomain')]) }}" >معرض المؤتمر</a>
+                <a href="{{ route('organizersandsponsors', ['subdomain' => request()->route('subdomain')]) }}" >Organizers and Sponsors</a>
 
-                <a href="{{ route('contactus', ['subdomain' => request()->route('subdomain')]) }}" >اتصل بنا</a>
+                    @if ($exhibitionincludes_count > 0 || $exhibitionobjectives_count > 0)
+                        <a href="{{ route('conferenceExhibition', ['subdomain' => request()->route('subdomain')]) }}" >Conference Exhibition</a>
+                    @endif
+                    
+
+                <a href="{{ route('contactus', ['subdomain' => request()->route('subdomain')]) }}" >Contact Us</a>
                 
             </ul>
+            @endif
         </nav>
         <button onclick="menuBar()">
             <i class="fa-solid fa-caret-down"></i>
@@ -90,9 +135,6 @@
       });
 
 
-        document.querySelector(".switchLang").addEventListener("click", () => {
-            alert("اللغة الإنجليزية قيد التطوير - English language under development");
-        });
     </script>
 
 

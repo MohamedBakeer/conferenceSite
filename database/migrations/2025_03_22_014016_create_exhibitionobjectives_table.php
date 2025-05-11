@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('SubDomainConference')->comment('المفتاح الأساسي لربط  بالمؤتمر');
             $table->text('title')->comment('عنوان الهدف');
+            $table->text('title_en')->comment('عنوان الهدف');
             $table->timestamps();
         });
     }

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\committees;
 use App\Models\conferenceData;
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
 use App\Models\hyper_links;
+use App\Models\papers;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -73,19 +77,34 @@ class contactus extends Controller
 
                 $Committeemembers = committees::where('SubDomainConference', $primaryKey)->get();
 
-                
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+                $isResearchApproved = papers::where('SubDomainConference', $primaryKey)->where('status', 'approved')->count();
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'Receivingpapers' => $Receivingpapers,
                     'logoimages' => $logoimages,
                     'backgroundimages' => $backgroundimages,
+                    'isResearchApproved' => $isResearchApproved,
                     'Committeemembers' => $Committeemembers,
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
+
+                    'lang_dom' => Cookie::get('lang_dom'),
                     ...$hyper_LINKS
                 ];
 
                 return view('pages.contactus', $arrPass);
-                // return response()->json($arrPass);
+                //  return response()->json($arrPass);
+                //return response()->json( Cookie::get('lang_dom') );
             }
         }
     }

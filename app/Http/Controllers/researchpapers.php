@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\conferenceData;
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
 use App\Models\hyper_links;
 use App\Models\papers;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -85,6 +88,17 @@ class researchpapers extends Controller
 
                 $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
 
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
+
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
@@ -92,6 +106,10 @@ class researchpapers extends Controller
                     'Receivingpapers' => $Receivingpapers,
                     'backgroundimages' => $backgroundimages,
                     'isResearchApproved' => $isResearchApproved,
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
+
+                    'lang_dom' => Cookie::get('lang_dom'),
                     'papers' => $papers, // ✅ تمرير الورقات إلى الـ View
                     'search' => $search,  // ✅ تمرير البحث لتحديثه في الـ View            
                     ...$hyper_LINKS

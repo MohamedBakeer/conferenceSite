@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->text('SubDomainConference')->comment('العنوان الفرعي هذا المفتاح');
             $table->text('themeConference')->comment('شعار المؤتمر');
+            $table->text('themeConference_en')->comment('شعار المؤتمر');
             $table->text('introductionConference')->comment('المقدمة');
+            $table->text('introductionConference_en')->comment('المقدمة');
             $table->text('partnersConference')->nullable()->comment('المؤسسات المتعاونة');
+            $table->text('partnersConference_en')->nullable()->comment('المؤسسات المتعاونة');
             $table->timestamps();
         });
     }

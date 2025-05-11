@@ -58,4 +58,35 @@ Route::domain('{subdomain}.beko.com')->group(function () {
         Route::get('/organizersandsponsors', 'index')->name('organizersandsponsors');
     });
 
+
+    Route::get('/get-cookie', function () {
+        // قراءة الكوكيز
+        $user = Cookie::get('lang_dom');
+        return $user ? 'مرحباً، ' . $user : 'لا يوجد كوكيز';
+    });
+    
+    Route::get('/switch-cookie', function () {
+        // قراءة الكوكيز
+        $user = Cookie::get('lang_dom');
+        
+        // إذا لم يكن هناك كوكيز
+        if (!$user) {
+            // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+            $cookie = cookie('lang_dom', 'ar', 60);
+            // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+            return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+        }
+    
+        // إذا كان الكوكيز موجودًا، نقوم بالتبديل بين "Mohamed" و "Ahmed"
+        if ($user == 'ar') {
+            $cookie = cookie('lang_dom', 'en', 60); // تغيير القيمة إلى "Ahmed"
+        } else {
+            $cookie = cookie('lang_dom', 'ar', 60); // تغيير القيمة إلى "Mohamed"
+        }
+    
+        // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+        return redirect('/')->with('message', 'تم تبديل الكوكيز')->cookie($cookie);
+    })->name('switch-cookie');
+    
+
 });

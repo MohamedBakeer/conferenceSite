@@ -6,6 +6,8 @@
 @endsection
 
 @section('content')
+    
+    @if ($lang_dom == 'ar')
     <section class="sec1">
         <div class="right">
             <div class="header">
@@ -46,6 +48,48 @@
             @endif
                     </div>
     </section>
+    @elseif ($lang_dom == 'en')
+    <section class="sec1" dir="ltr">
+        <div class="right" id="rightEN">
+            <div class="header">
+                <h1>Conference objectives:</h1>
+            </div>
+            @if ($objectives_en->isNotEmpty()) 
+                <ul>
+                    @foreach ($objectives_en as $objective)
+                        <li>{{ $objective }}</li>
+                    @endforeach
+                </ul>
+            @else
+                <p>⚠️ No goals have been added to this conference yet.</p>
+            @endif
+            
+        </div>
+        <div class="left" id="leftEN">
+            <div class="header">
+                <h1>Conference topics:</h1>
+            </div>
+            
+            @if ($topics->isNotEmpty()) <!-- تأكد أن هناك محاور قبل العرض -->
+                <ul class="topic">
+                    @foreach ($topics as $topic)
+                        <li>{{ $topic['title_en'] }}</li> <!-- عرض عنوان المحور -->
+            
+                        @if (!empty($topic['sub_topics_en']) && count($topic['sub_topics_en']) > 0) <!-- تحقق من وجود مواضيع فرعية -->
+                            <ul class="subtopic">
+                                @foreach ($topic['sub_topics_en'] as $subTopic)
+                                    <li>{{ $subTopic }}</li> <!-- عرض المواضيع الفرعية -->
+                                @endforeach
+                            </ul>
+                        @endif
+                    @endforeach
+                </ul>
+            @else
+                <p>⚠️ No topics have been added to this conference yet.</p>
+            @endif
+        </div>
+    </section>
+    @endif
 @endsection
 
 

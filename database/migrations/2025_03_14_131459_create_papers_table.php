@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('phone_number');
             $table->text('university');
             $table->text('research_title');
+            $table->text('type_of_paper')->comment('file | link');
             $table->text('file_path_name');
             $table->text('status')->comment('approved | pending');
             

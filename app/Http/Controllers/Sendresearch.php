@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\conferenceData;
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
 use App\Models\hyper_links;
 use App\Models\papers;
 use App\Models\summaries;
 use App\Models\summary;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -86,10 +89,27 @@ class Sendresearch extends Controller
                 $logoimages = $this->logoimages($subdomain);
                 $backgroundimages = $this->backgroundimages($subdomain);
 
+                $isResearchApproved = papers::where('SubDomainConference', $primaryKey)->where('status', 'approved')->count();
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
+
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'Receivingpapers' => $Receivingpapers,
+                    'isResearchApproved' => $isResearchApproved,
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
+
+                    'lang_dom' => Cookie::get('lang_dom'),
                     'logoimages' => $logoimages,
                     'backgroundimages' => $backgroundimages,
                     ...$hyper_LINKS
@@ -130,7 +150,7 @@ class Sendresearch extends Controller
         
         summaries::create($ResearchSubmission);
         
-        return back()->with('success', 'تم إرسال البحث بنجاح!');
+        return back()->with('success', 'تم إرسال الملخص بنجاح!');
         // return response()->json($ResearchSubmission);
     }
 

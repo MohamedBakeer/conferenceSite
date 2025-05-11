@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('conference_data', function (Blueprint $table) {
             $table->id();
             $table->text('nameConference')->comment('إسم المؤتمر');
+            $table->text('nameConference_en')->comment('إسم المؤتمر');
             $table->text('SubDomainConference')->comment('العنوان الفرعي هذا المفتاح');
             $table->text('dateConference')->comment('تاريخ إنطلاق المؤتمر');
             $table->text('activationConference')->comment('حالة المؤتمر')->default('inactive');

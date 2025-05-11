@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('SubDomainConference')->comment('العنوان الفرعي هذا المفتاح');
             $table->text('event')->comment('اسم الحدث + التاريخ المرتبط بالحدث');
+            $table->text('event_en')->comment('english event + date');
             $table->timestamps();
         });
     }
@@ -27,3 +28,6 @@ return new class extends Migration
         Schema::dropIfExists('important_dates');
     }
 };
+
+
+

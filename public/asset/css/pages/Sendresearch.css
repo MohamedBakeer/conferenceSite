@@ -84,284 +84,185 @@ header {
 .sec1 > .content > .forms {
     width: 100%;
     /* border: 1px solid blue; */
-    height: 100%;
+    /* height: 100%; */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-radius: 10px;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     background-color: #444444;
     margin-top: 2px;
 }
 
-.sec1 > .content > .forms > .defult {
-    color: #fff;
-    /* border: 1px solid red; */
-    /* display: none; */
-    
-}
-
-.sec1 > .content > .forms > .cmt3 {
-    color: #fff;
-    /* border: 1px solid blue; */
+.sec1 > .content > .forms > .instructions {
     width: 100%;
-    height: fit-content;
+    /* height: 100%; */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     flex-direction: column;
-    padding: 1% 2%;
-    background-color: #222222;
-    display: none;
-}
-.sec1 > .content > .forms > .cmt3 > h2 {
-    font-size: clamp(24px, 1.5vw, 48px); /* يضمن تناسب الحجم مع الشاشات */
-    font-weight: 700;
-    /* margin: 10px 0; */
-    text-shadow: 2px 0px 8px rgba(0, 0, 0, 0.8); /* ظل خفيف بدون تشويش زائد */
-    color: #dddddd;
-    /* color: #fff; */
-    width: 100%;
-    height: auto;
-    text-align: center;
-}
-.sec1 > .content > .forms > .cmt3 > video {
     /* border: 1px solid red; */
-    width: 70%;
-    /* height: 80%; */
-    text-align: center;
-    padding: 10px;
+    padding: 20px;
 }
-
-.sec1 > .content > .forms > .cmt3 > p{
-    /* border: 1px solid red; */
-    padding: 10px;
-    margin: 10px 0px;
-    font-size: clamp(24px, 1vw, 36px);
-    text-align: center;
-}
-
-.sec1 > .content > .forms > .cmt3 > a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5% 5%;
-    background-color: tomato;
+.sec1 > .content > .forms > .instructions > h2 {
+    font-size: clamp(20px, 1.1vw, 38px); /* يضمن تناسب الحجم مع الشاشات */
     color: #fff;
-    text-decoration: none;
+    padding: 0.5% 0%;
+    margin: 0px;
+    width: 100%;
+    text-align: start;
+    /* border: 1px solid red; */
+}
+
+.sec1 > .content > .forms > .instructions > p {
+    font-size: clamp(18px, 0.75vw, 30px); /* يضمن تناسب الحجم مع الشاشات */
+    color: #fff;
+    padding: 0.5% 1%;
+    margin: 0px;
+    width: 100%;
+    text-align: start;
+    /* border: 1px solid red; */
+}
+
+.sec1 > .content > .forms > .instructions > ul {
+    margin: 0px;
+    width: 100%;
+    text-align: start;
+    /* border: 1px solid red; */
+}
+.sec1 > .content > .forms > .instructions > ul > li {
+    font-size: clamp(13px, 0.7vw, 27px); /* يضمن تناسب الحجم مع الشاشات */
+    color: #fff;
+    margin: 0px;
+    margin: 0.8% 3%;
+    width: 100%;
+    text-align: start;
+    /* border: 1px solid red; */
+}
+
+.sec1 > .content > .forms > .instructions > ul > li > a {
+    color: cadetblue;
+    text-decoration: underline;
     font-weight: 600;
     transition: 0.3s;
     cursor: pointer;
     border: none;
     outline: none;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     font-size: 1.1rem;
+    margin: 0px 5px;
 }
-.sec1 > .content > .forms > .cmt3 > a:hover{
-    padding: 0.5% 7%;
-    background-color: rgb(255, 88, 58);
+.sec1 > .content > .forms > .instructions > ul > li > a:hover {
+    color: rgb(150, 251, 255);
 }
 
-.sec1 > .content > .forms > .abstractForm {
-    color: #fff;
-    /* border: 1px solid blue; */
+/* -------- */
+
+.sec1 > .content > .forms > .howToSubmit {
     width: 100%;
     height: 100%;
     display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    flex-direction: column;
-    padding: 1% 2%;
-    background-color: #222222;
-    display: none;
-}
-.sec1 > .content > .forms > .abstractForm > h2 {
-    font-size: clamp(24px, 1.5vw, 48px); /* يضمن تناسب الحجم مع الشاشات */
-    font-weight: 700;
-    /* margin: 10px 0; */
-    text-shadow: 2px 0px 8px rgba(0, 0, 0, 0.8); /* ظل خفيف بدون تشويش زائد */
-    color: #dddddd;
-    /* color: #fff; */
-    /* border: 1px solid blue; */
-    width: 100%;
-    height: auto;
-    text-align: center;
-}
-
-.sec1 > .content > .forms > .abstractForm > .feilds {
-    /* border: 1px solid blue; */
-    width: 100%;
-    /* height: 100%; */
-    padding: 10px;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    /* border: 1px solid red; */
+    padding: 20px;
 }
-.sec1 > .content > .forms > .abstractForm > .feilds > .feild {
-    /* border: 1px solid blue; */
-    width: 100%;
-    /* height: 50%; */
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 25%);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-}
-.sec1 > .content > .forms > .abstractForm > .feilds > .feild > div{
-    /* border: 1px solid white; */
-    /* height: 50%; */
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 1% 2%;
-}
-.sec1 > .content > .forms > .abstractForm > .feilds > .feild > div > input{
-    width: 100%;
-    padding: 1% 2%;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    outline: none;
-    border: none;
-    text-align: start;
-    background-color: #ececec;
-    background-color: #fff;
-    color: #222222;
-}
-.sec1 > .content > .forms > .abstractForm > .feilds > .feild > div > input:hover{
-    background-color: #dddddd;
-}
-/* إخفاء الـ input الأصلي */
-.custom-file-input {
-    display: none;
-}
-
-/* تصميم الزر البديل */
-.custom-file-label {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #222222;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.custom-file-label:hover {
-    background-color: #dddddd;
-}
-
-/* عرض اسم الملف بعد الاختيار */
-.file-name , .file-nameg {
-    margin-right: 10px;
-    font-size: 16px;
-    color: #ececec;
-}
-
-
-.sec1 > .content > .forms > .abstractForm > .feilds > .btn {
-    /* border: 1px solid blue; */
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-.sec1 > .content > .forms > .abstractForm > .feilds > .btn >input{
-    padding: 0.5% 10%;
-    background-color: #fff;
-    color: #222222;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.sec1 > .content > .forms > .abstractForm > .feilds > .btn >input:hover{
-    background-color: #dddddd;
-}
-
-
-
-.sec1 > .content > .forms > .Participatebyattending {
+.sec1 > .content > .forms > .howToSubmit > h2 {
+    font-size: clamp(20px, 1.1vw, 38px); /* يضمن تناسب الحجم مع الشاشات */
     color: #fff;
-    /* border: 1px solid blue; */
+    padding: 0.5% 0%;
+    margin: 0px;
     width: 100%;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1% 2%;
-    background-color: #222222;
-    display: none;
-}
-.sec1 > .content > .forms > .Participatebyattending > p {
-    font-size: 1.2rem; /* يضمن تناسب الحجم مع الشاشات */
-    font-weight: 700;
-    /* margin: 10px 0; */
-    text-shadow: 2px 0px 8px rgba(0, 0, 0, 0.8); /* ظل خفيف بدون تشويش زائد */
-    color: #dddddd;
-    /* color: #fff; */
-    /* border: 1px solid blue; */
-    width: 100%;
-    height: auto;
     text-align: center;
+    /* border: 1px solid red; */
+}
+.sec1 > .content > .forms > .howToSubmit > p {
+    font-size: clamp(18px, 0.75vw, 30px); /* يضمن تناسب الحجم مع الشاشات */
+    color: #fff;
+    padding: 0.5% 1%;
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+    /* border: 1px solid red; */
 }
 
-.sec1 > .content > .forms > .Participatebyattending > a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5% 3%;
-    background-color: tomato;
-    color: #fff;
-    text-decoration: none;
+.sec1 > .content > .forms > .howToSubmit > a {
+    color: cadetblue;
+    text-decoration: underline;
     font-weight: 600;
     transition: 0.3s;
     cursor: pointer;
     border: none;
     outline: none;
-    border-radius: 10px;
     font-size: 1.1rem;
+    margin: 0px 5px;
 }
-.sec1 > .content > .forms > .Participatebyattending > a:hover{
-    padding: 0.5% 5%;
-    background-color: rgb(255, 88, 58);
-}
-
-
-
-
-
-/* ---------------- */
-
-/* .sec1 > .content > .forms > .defult {
-    display: none;
+.sec1 > .content > .forms > .howToSubmit > a:hover {
+    color: rgb(150, 251, 255);
 }
 
-.sec1 > .content > .forms > .cmt3 {
-    display: none;
+.sec1 > .content > .forms > .howToSubmit > video {
+    width: 70%;
+    /* height: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    padding: 20px;
 }
 
-.sec1 > .content > .forms > .abstractForm {
-    display: none;
+
+/* -------------------------------------------------------- */
+.sec1 > .content > .forms > .cmt3Link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    padding: 20px;
+}
+.sec1 > .content > .forms > .cmt3Link > h2 {
+    font-size: clamp(20px, 1.1vw, 38px); /* يضمن تناسب الحجم مع الشاشات */
+    color: #fff;
+    padding: 0.5% 0%;
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+    /* border: 1px solid red; */
+}
+.sec1 > .content > .forms > .cmt3Link > p {
+    font-size: clamp(18px, 0.75vw, 30px); /* يضمن تناسب الحجم مع الشاشات */
+    color: #fff;
+    padding: 0.5% 1%;
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+    /* border: 1px solid red; */
+}
+.sec1 > .content > .forms > .cmt3Link > a {
+    color: cadetblue;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    margin: 0px 5px;
+}
+.sec1 > .content > .forms > .cmt3Link > a:hover {
+    color: rgb(150, 251, 255);
 }
 
-.sec1 > .content > .forms > .paperForm {
-    display: none;
-} 
 
-*/
-
-@media (max-width: 1000px) { 
+@media (max-width: 1000px) {
     .sec1 > .content {
-        width: 90%;
+        width: 100%;
         height: auto;
         /* border: 1px solid blue; */
         display: flex;
@@ -369,7 +270,7 @@ header {
         flex-direction: column;
         padding: 10px;
     }
-    
+
     .sec1 > .content > .buttons {
         width: 100%;
         height: auto;
@@ -379,114 +280,65 @@ header {
         align-items: center;
         flex-direction: column;
     }
-    
+
     .sec1 > .content > .buttons > button {
         width: 80vw;
         margin: 5px 0px;
         border-radius: 10px;
     }
-    
+
     .sec1 > .content > .buttons > button:hover {
         background-color: #222222;
     }
-    
+
     .sec1 > .content > .buttons > button:focus {
         background-color: #222222;
     }
 
-    .sec1 > .content > .forms > .abstractForm {
-        justify-content: start;
-        padding: 10px 0px;
+    .sec1 > .content > .forms > .instructions {
+        padding: 10px;
     }
-    .sec1 > .content > .forms > .abstractForm > h2 {
-        font-size: clamp(20px, 1.1vw, 38px); /* يضمن تناسب الحجم مع الشاشات */
+    .sec1 > .content > .forms > .instructions > h2 {
+        font-size: clamp(18px, 1vw, 30px); /* يضمن تناسب الحجم مع الشاشات */
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+
+    .sec1 > .content > .forms > .instructions > p {
+        font-size: clamp(13px, 0.75vw, 20px); /* يضمن تناسب الحجم مع الشاشات */
+    }
+
+    .sec1 > .content > .forms > .instructions > ul > li {
+        font-size: clamp(13px, 0.5vw, 20px); /* يضمن تناسب الحجم مع الشاشات */
+        color: #fff;
+        margin: 0px;
+        margin: 0.5% 3%;
+        width: 100%;
+        text-align: start;
+        /* border: 1px solid red; */
+    }
+
+    .sec1 > .content > .forms > .howToSubmit {
+        padding: 10px;
+    }
+    .sec1 > .content > .forms > .howToSubmit > h2 {
+        font-size: clamp(20px, 1vw, 33px); /* يضمن تناسب الحجم مع الشاشات */
+    }
+    .sec1 > .content > .forms > .howToSubmit > p {
+        font-size: clamp(15px, 0.65vw, 20px); /* يضمن تناسب الحجم مع الشاشات */
     }
     
-    .sec1 > .content > .forms > .abstractForm > .feilds {
-        justify-content: start;
-        margin: 20px 0px;
+    .sec1 > .content > .forms > .howToSubmit > a {
+        font-size: 1rem;
     }
-    .sec1 > .content > .forms > .abstractForm > .feilds > .feild {
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(5, 1fr);
 
+    
+    .sec1 > .content > .forms > .howToSubmit > video {
+        padding: 5px;
+        width: 100%;
+        height: fit-content;
     }
 }
-
 
 @media (max-width: 500px) {
-
-    .sec1 > .content > .forms {
-        border: 1px solid yellow;
-        /* min-height: 100vh; */
-    }
-    
-    .sec1 > .content > .forms > .cmt3 {
-        width: 100%;
-        height: 70vh;
-        justify-content: space-evenly;
-        padding: 1% 1%;
-    }
-
-    
-    .sec1 > .content > .forms > .cmt3 > video {
-        width: 100%;
-        padding: 0px;
-        margin: 10px 0px;
-    }
-    
-    .sec1 > .content > .forms > .cmt3 > p{
-        font-size: 0.8rem;
-    }
-    
-    .sec1 > .content > .forms > .abstractForm {
-        justify-content: start;
-    }
-    .sec1 > .content > .forms > .abstractForm > h2 {
-        font-size: clamp(20px, 1.1vw, 38px); /* يضمن تناسب الحجم مع الشاشات */
-    }
-    
-    .sec1 > .content > .forms > .abstractForm > .feilds {
-        justify-content: start;
-        margin: 10px 0px;
-    }
-    .sec1 > .content > .forms > .abstractForm > .feilds > .feild {
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-
-    }
-    
-    
-
-}
-
-
-
-.abort {
-    width: 100%;
-    height: 61.2vh;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 1px solid red; */
-}
-.abort > h1 {
-    padding: 0.7vw 1.5vw;
-    background-color: #444444;
-    color: #fff;
-    border-radius: 10px;
-    cursor: default;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: clamp(20px , 2.5vw , 28px);
-}
-.abort > h1:hover {
-    padding: 0.5% 3%;
-    background-color: #444444;
-    color: #fff;
-    border-radius: 25px;
-    transform: scale(1.1);
 }

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\conferenceData;
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
 use App\Models\hyper_links;
 use App\Models\important_dates;
+use App\Models\papers;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -131,16 +135,35 @@ class writingandparticipating extends Controller
                 $ImportantDates = important_dates::where('SubDomainConference', $primaryKey)
                 ->pluck('event')
                 ->toArray();
+                $ImportantDates_en = important_dates::where('SubDomainConference', $primaryKey)
+                ->pluck('event_en')
+                ->toArray();
 
                 $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
+
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+
+                $isResearchApproved = papers::where('SubDomainConference', $primaryKey)->where('status', 'approved')->count();
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
 
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'logoimages' => $logoimages,
                     'Receivingpapers' => $Receivingpapers,
+                    'isResearchApproved' => $isResearchApproved,
                     'backgroundimages' => $backgroundimages,
+                    'lang_dom' => Cookie::get('lang_dom'),
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
                     'ImportantDates' => $ImportantDates,
+                    'ImportantDates_en' => $ImportantDates_en,
                     ...$hyper_LINKS,
                     ...$folders
                 ];

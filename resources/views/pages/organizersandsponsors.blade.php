@@ -10,13 +10,29 @@
 
     <section class="sec1">
         <div class="btn">
-            <button onclick="btn(0)">لجان الجهة المنظمة</button>
-            <button onclick="btn(1)">الجهات الراعية</button>
+            {{-- <button onclick="btn(0)" style="display: none">لجان الجهة المنظمة</button> --}}
+
+            @if ($committeeMembers->isNotEmpty())
+                @if ($lang_dom == 'ar')
+                    <button onclick="btn(0)">لجان المؤتمر</button>
+                @elseif ($lang_dom == 'en') 
+                    <button onclick="btn(0)">Conference committees</button>
+                @endif
+            @endif
+
+            @if ($sponsors->isNotEmpty())
+            @if ($lang_dom == 'ar')
+                <button onclick="btn(1)">الجهات الراعية</button>
+            @elseif ($lang_dom == 'en') 
+                <button onclick="btn(1)">Sponsors</button>
+            @endif
+            @endif
+            
         </div>
 
         <div class="content" style="display: none">
 
-            <div class="organizers" style="display: none">
+            {{-- <div class="organizers" style="display: none">
 
                 @if ($organizers->isNotEmpty())
 
@@ -41,7 +57,7 @@
                 </div>
                 @endif
 
-            </div>
+            </div> --}}
 
             <div class="sponsors">
 
@@ -61,12 +77,12 @@
                                             <h3>{{ $sponsor->name }}</h3>
                                             <a href="{{ $sponsor->external_link }}" target="_blank">موقع الراعي</a>
                                         </div>
-                                    @else
-                                        <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;">
+                                    {{-- @else --}}
+                                        {{-- <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;"> --}}
                                             {{-- <img src="{{ url('asset/image/logo.png') }}" alt="091"> --}}
-                                            <h3>لا يوجد راعي حالياً</h3>
+                                            {{-- <h3>لا يوجد راعي حالياً</h3> --}}
                                             {{-- <a href="#">موقع الراعي</a> --}}
-                                        </div>
+                                        {{-- </div> --}}
                                     @endif
                                 @endforeach
                             </div>
@@ -82,12 +98,12 @@
                                             <h3>{{ $sponsor->name }}</h3>
                                             <a href="{{ $sponsor->external_link }}" target="_blank">موقع الراعي</a>
                                         </div>
-                                    @else
-                                        <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;">
+                                    {{-- @else --}}
+                                        {{-- <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;"> --}}
                                             {{-- <img src="{{ url('asset/image/logo.png') }}" alt="091"> --}}
-                                            <h3>لا يوجد راعي حالياً</h3>
+                                            {{-- <h3>لا يوجد راعي حالياً</h3> --}}
                                             {{-- <a href="#">موقع الراعي</a> --}}
-                                        </div>
+                                        {{-- </div> --}}
                                     @endif
                                 @endforeach
                             </div>
@@ -104,12 +120,12 @@
                                             <h3>{{ $sponsor->name }}</h3>
                                             <a href="{{ $sponsor->external_link }}" target="_blank">موقع الراعي</a>
                                         </div>
-                                    @else
-                                        <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;">
+                                    {{-- @else --}}
+                                        {{-- <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;"> --}}
                                             {{-- <img src="{{ url('asset/image/logo.png') }}" alt="091"> --}}
-                                            <h3>لا يوجد راعي حالياً</h3>
+                                            {{-- <h3>لا يوجد راعي حالياً</h3> --}}
                                             {{-- <a href="#">موقع الراعي</a> --}}
-                                        </div>
+                                        {{-- </div> --}}
                                     @endif
                                 @endforeach
                             </div>
@@ -126,12 +142,12 @@
                                             <h3>{{ $sponsor->name }}</h3>
                                             <a href="{{ $sponsor->external_link }}" target="_blank">موقع الراعي</a>
                                         </div>
-                                    @else
-                                        <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;">
+                                    {{-- @else --}}
+                                        {{-- <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;"> --}}
                                             {{-- <img src="{{ url('asset/image/logo.png') }}" alt="091"> --}}
-                                            <h3>لا يوجد راعي حالياً</h3>
+                                            {{-- <h3>لا يوجد راعي حالياً</h3> --}}
                                             {{-- <a href="#">موقع الراعي</a> --}}
-                                        </div>
+                                        {{-- </div> --}}
                                     @endif
                                 @endforeach
                             </div>
@@ -148,12 +164,12 @@
                                             <h3>{{ $sponsor->name }}</h3>
                                             <a href="{{ $sponsor->external_link }}" target="_blank">موقع الراعي</a>
                                         </div>
-                                    @else
-                                        <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;">
+                                    {{-- @else --}}
+                                        {{-- <div class="card" style="background-image: url({{ url('asset/image/logo.png') }}) ; background-position: center; background-size: contain; background-repeat: no-repeat;"> --}}
                                             {{-- <img src="{{ url('asset/image/logo.png') }}" alt="091"> --}}
-                                            <h3>لا يوجد راعي حالياً</h3>
+                                            {{-- <h3>لا يوجد راعي حالياً</h3> --}}
                                             {{-- <a href="#">موقع الراعي</a> --}}
-                                        </div>
+                                        {{-- </div> --}}
                                     @endif
                                 @endforeach
                             </div>
@@ -170,13 +186,275 @@
 
             </div>
 
+            @if ($lang_dom == 'ar')
+
+                <div class="committee">
+                    
+                    @if ($countCommitteeMembers['committeeMembers_conference'] > 0)
+
+                        <div class="conference">
+                            <h1>لجنة المــــــؤتـــمــــــر</h1>
+                            <div class="cards">
+
+                                @foreach ($committeeMembers as $member)
+                                    @if ($member->committee == 'conference')
+
+                                        <div class="card">
+                                            <img src=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->photo_path)  }} " alt="">
+                                            <div class="data">
+            
+                                                <h3>{{ $member->name }}</h3>
+                                                <p>{{ $member->profession }}</p>
+                                                <p>{{ $member->university }}</p>
+                                                {{-- <p>عضو نقابة المهن الهندسية بالزاوية</p> --}}
+            
+                                            </div>
+                                            <div class="link">
+                                                <a href="tel:{{ $member->phone }}"><i class="fa-solid fa-phone"></i></a>
+                                                <a href="mailto:{{ $member->email }}"><i class="fa-solid fa-envelope"></i></a>
+                                                <a href=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->cv_path)  }} "><i class="fa-solid fa-file-pdf"></i></a>
+                                            </div>
+                                            @if ($member->role == 'رئيس')
+                                                <p style="background: gold; color: black;">{{ $member->role }}</p>
+                                            @else
+                                            <p>{{ $member->role }}</p>
+                                            @endif
+                                        </div>
+                                    
+                                    @endif
+                                @endforeach
+                                
+                            </div>
+                        </div>
+
+                    @endif
+
+                    @if ($countCommitteeMembers['committeeMembers_preparatory'] > 0)
+
+                        <div class="preparatory">
+                            <h1>اللجنة التحضيرية</h1>
+                            <div class="cards">
+                                @foreach ($committeeMembers as $member)
+                                    @if ($member->committee == 'preparatory')
+
+                                        <div class="card">
+                                            <img src=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->photo_path)  }} " alt="">
+                                            <div class="data">
+            
+                                                <h3>{{ $member->name }}</h3>
+                                                <p>{{ $member->profession }}</p>
+                                                <p>{{ $member->university }}</p>
+                                                {{-- <p>عضو نقابة المهن الهندسية بالزاوية</p> --}}
+            
+                                            </div>
+                                            <div class="link">
+                                                <a href="tel:{{ $member->phone }}"><i class="fa-solid fa-phone"></i></a>
+                                                <a href="mailto:{{ $member->email }}"><i class="fa-solid fa-envelope"></i></a>
+                                                <a href=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->cv_path)  }} "><i class="fa-solid fa-file-pdf"></i></a>
+                                            </div>
+                                            @if ($member->role == 'رئيس')
+                                                <p style="background: gold; color: black;">{{ $member->role }}</p>
+                                            @else
+                                            <p>{{ $member->role }}</p>
+                                            @endif
+                                        </div>
+                                    
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
+                    @endif
+
+                    @if ($countCommitteeMembers['committeeMembers_scientific'] > 0)
+                    
+                        <div class="scientific">
+                            <h1>اللجنة العلمية</h1>
+                            <div class="cards">
+                                @foreach ($committeeMembers as $member)
+                                    @if ($member->committee == 'scientific')
+
+                                        <div class="card">
+                                            <img src=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->photo_path)  }} " alt="">
+                                            <div class="data">
+            
+                                                <h3>{{ $member->name }}</h3>
+                                                <p>{{ $member->profession }}</p>
+                                                <p>{{ $member->university }}</p>
+                                                {{-- <p>عضو نقابة المهن الهندسية بالزاوية</p> --}}
+            
+                                            </div>
+                                            <div class="link">
+                                                <a href="tel:{{ $member->phone }}"><i class="fa-solid fa-phone"></i></a>
+                                                <a href="mailto:{{ $member->email }}"><i class="fa-solid fa-envelope"></i></a>
+                                                <a href=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->cv_path)  }} "><i class="fa-solid fa-file-pdf"></i></a>
+                                            </div>
+                                            @if ($member->role == 'رئيس')
+                                                <p style="background: gold; color: black;">{{ $member->role }}</p>
+                                            @else
+                                            <p>{{ $member->role }}</p>
+                                            @endif
+                                        </div>
+                                    
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
+                    @endif
+                        
+
+
+                    
+                </div>
+
+            @elseif ($lang_dom == 'en') 
+            
+                <div class="committee" dir="ltr">
+                    
+                    @if ($countCommitteeMembers['committeeMembers_conference'] > 0)
+
+                        <div class="conference">
+                            <h1>Conference Committee</h1>
+                            <div class="cards">
+
+                                @foreach ($committeeMembers as $member)
+                                    @if ($member->committee == 'conference')
+
+                                        <div class="card">
+                                            <img src=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->photo_path)  }} " alt="">
+                                            <div class="data">
+            
+                                                <h3>{{ $member->name_en }}</h3>
+                                                <p>{{ $member->profession_en }}</p>
+                                                <p>{{ $member->university_en }}</p>
+                                                {{-- <p>عضو نقابة المهن الهندسية بالزاوية</p> --}}
+            
+                                            </div>
+                                            <div class="link">
+                                                <a href="tel:{{ $member->phone }}"><i class="fa-solid fa-phone"></i></a>
+                                                <a href="mailto:{{ $member->email }}"><i class="fa-solid fa-envelope"></i></a>
+                                                <a href=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->cv_path)  }} "><i class="fa-solid fa-file-pdf"></i></a>
+                                            </div>
+                                            @if ($member->role == 'رئيس')
+                                                <p style="background: gold; color: black;">Chairman</p>
+                                            @elseif ($member->role == 'نائب رئيس')
+                                                <p>Vice President</p>
+                                            @elseif ($member->role == 'مساعد')
+                                                <p>assistant</p>
+                                            @elseif ($member->role == 'عضو')
+                                                <p>Member</p>
+                                            @endif
+                                        </div>
+                                    
+                                    @endif
+                                @endforeach
+                                
+                            </div>
+                        </div>
+
+                    @endif
+
+                    @if ($countCommitteeMembers['committeeMembers_preparatory'] > 0)
+
+                        <div class="preparatory">
+                            <h1>Preparatory Committee</h1>
+                            <div class="cards">
+                                @foreach ($committeeMembers as $member)
+                                    @if ($member->committee == 'preparatory')
+
+                                    <div class="card">
+                                        <img src=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->photo_path)  }} " alt="">
+                                        <div class="data">
+        
+                                            <h3>{{ $member->name_en }}</h3>
+                                            <p>{{ $member->profession_en }}</p>
+                                            <p>{{ $member->university_en }}</p>
+                                            {{-- <p>عضو نقابة المهن الهندسية بالزاوية</p> --}}
+        
+                                        </div>
+                                        <div class="link">
+                                            <a href="tel:{{ $member->phone }}"><i class="fa-solid fa-phone"></i></a>
+                                            <a href="mailto:{{ $member->email }}"><i class="fa-solid fa-envelope"></i></a>
+                                            <a href=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->cv_path)  }} "><i class="fa-solid fa-file-pdf"></i></a>
+                                        </div>
+                                        @if ($member->role == 'رئيس')
+                                            <p style="background: gold; color: black;">Chairman</p>
+                                        @elseif ($member->role == 'نائب رئيس')
+                                            <p>Vice President</p>
+                                        @elseif ($member->role == 'مساعد')
+                                            <p>assistant</p>
+                                        @elseif ($member->role == 'عضو')
+                                            <p>Member</p>
+                                        @endif
+                                    </div>
+                                    
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
+                    @endif
+
+                    @if ($countCommitteeMembers['committeeMembers_scientific'] > 0)
+                    
+                        <div class="scientific">
+                            <h1>Scientific Committee</h1>
+                            <div class="cards">
+                                @foreach ($committeeMembers as $member)
+                                    @if ($member->committee == 'scientific')
+
+                                    <div class="card">
+                                        <img src=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->photo_path)  }} " alt="">
+                                        <div class="data">
+        
+                                            <h3>{{ $member->name_en }}</h3>
+                                            <p>{{ $member->profession_en }}</p>
+                                            <p>{{ $member->university_en }}</p>
+                                            {{-- <p>عضو نقابة المهن الهندسية بالزاوية</p> --}}
+        
+                                        </div>
+                                        <div class="link">
+                                            <a href="tel:{{ $member->phone }}"><i class="fa-solid fa-phone"></i></a>
+                                            <a href="mailto:{{ $member->email }}"><i class="fa-solid fa-envelope"></i></a>
+                                            <a href=" {{  url('asset/image/' . $kaydomain . '/organizersandsponsors/committees/' . $member->cv_path)  }} "><i class="fa-solid fa-file-pdf"></i></a>
+                                        </div>
+                                        @if ($member->role == 'رئيس')
+                                            <p style="background: gold; color: black;">Chairman</p>
+                                        @elseif ($member->role == 'نائب رئيس')
+                                            <p>Vice President</p>
+                                        @elseif ($member->role == 'مساعد')
+                                            <p>assistant</p>
+                                        @elseif ($member->role == 'عضو')
+                                            <p>Member</p>
+                                        @endif
+                                    </div>
+                                    
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
+                    @endif
+                        
+
+
+                    
+                </div>
+
+            @endif
+
 
 
 
         </div>
 
         <div class="abort">
-            <h1>أنقر على احد الازرار للعرض </h1>
+            @if ($lang_dom == 'ar')
+                <h1>أنقر على احد الازرار للعرض </h1>
+            @elseif ($lang_dom == 'en')
+                <h1>Click on one of the buttons to view </h1>
+            @endif
         </div>
     </section>
 
@@ -202,11 +480,22 @@
                 document.querySelector(".sec1 > .content").style.display = "flex";
                 
                 if (params == 0) {
-                    document.querySelector(".sec1 > .content > .organizers").style.display = "flex";
+                    // document.querySelector(".sec1 > .content > .organizers").style.display = "flex";
+                    // document.querySelector(".sec1 > .content > .sponsors").style.display = "none";
+                    // document.querySelector(".sec1 > .content > .committee").style.display = "none";
+                    // document.querySelector(".sec1 > .content > .organizers").style.display = "none";
                     document.querySelector(".sec1 > .content > .sponsors").style.display = "none";
-                } else {
-                    document.querySelector(".sec1 > .content > .organizers").style.display = "none";
+                    document.querySelector(".sec1 > .content > .committee").style.display = "flex";
+
+
+                } else if (params == 1)  {
+                    // document.querySelector(".sec1 > .content > .organizers").style.display = "none";
                     document.querySelector(".sec1 > .content > .sponsors").style.display = "flex";
+                    document.querySelector(".sec1 > .content > .committee").style.display = "none";
+                }else if (params == 2) {
+                    // document.querySelector(".sec1 > .content > .organizers").style.display = "none";
+                    document.querySelector(".sec1 > .content > .sponsors").style.display = "none";
+                    document.querySelector(".sec1 > .content > .committee").style.display = "flex";
                 }
 
                 if (btn) {

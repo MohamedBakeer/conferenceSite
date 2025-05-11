@@ -394,6 +394,19 @@ section {
     padding-right: 10%;
     font-size: clamp(10px, 1vw, 15px); /* يضمن تناسب الحجم مع الشاشات */
 }
+.sec6 > #contentEn > h2{
+    width: 100%;
+    font-size: clamp(20px, 2vw, 45px); /* يضمن تناسب الحجم مع الشاشات */
+    color: #222222;
+    padding-left: 5%;
+}
+.sec6 > #contentEn > ul{
+    list-style-type: '🔔    ';
+    width: 100%;
+    color: #444444;
+    padding-left: 10%;
+    font-size: clamp(10px, 1vw, 15px); /* يضمن تناسب الحجم مع الشاشات */
+}
 
 .sec7 {
     width: 100%;
@@ -538,6 +551,97 @@ section {
     color:  #69727d;
     transform: scale(0.95);
 }
+
+
+.sec8 { 
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: rgba(245, 245, 245, 1); */
+    /* box-shadow: 0px 1px 10px rgba(245, 245, 245, 1); */
+    /* border: 1px solid red; */
+    /* position: relative; */
+    padding: 10px 10%;
+    /* border: 1px solid red; */
+}
+
+.sec8 > .content{
+    width:  100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    text-align: start;
+    /* border: 1px solid red; */
+}
+
+.sec8 > .content > h2 {
+    width: fit-content;
+    font-size: calc(0.85rem + 1vw);
+    font-weight: 700;
+    padding: 10px 20%;
+    margin: 10px 0px;
+    color: #222222;
+    text-align: center;
+    background-color: #007EA3;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.sec8 > .content > p {
+    width: 100%;
+    font-size:  calc(0.5rem + 1vw);
+    font-weight: 500;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.4);
+    color: #444444;
+    padding: 10px 20%;
+    text-align: center;
+}
+
+.sec8 > .content > .paragraph {
+    /* border: 1px solid #007EA3; */
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+.sec8 > .content > .paragraph > p {
+    width: 100%;
+    height: 100%;
+    font-size: calc(0.1rem + 1vw);
+    font-weight: 500;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.4);
+    color: #444444;
+    padding: 10px;
+    /* text-align: center; */
+}
+.sec8 > .content > a{
+    padding: 0.3vw 1vw;
+    background-color: #007EA3;
+    color: white;
+    /* border: 2px solid white; */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: calc(0.5rem + 1vw);
+    margin: 15px 0px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    font-size: 1rem;
+    transform: scale(1);
+}
+.sec8 > .content > a:hover {
+    background-color: white;
+    color:  #007EA3;
+    transform: scale(0.95);
+}
+
 
 
 /* ------------------Responsive Design */
@@ -722,6 +826,13 @@ section {
         background-color: white;
         color:  #69727d;
         transform: scale(0.95);
+    }
+
+    .sec8 > .content > .paragraph {
+        flex-direction: column;
+    }
+    .sec8 > .content > .paragraph > p {
+        font-size: calc(0.5rem + 1vw);
     }
 
 }

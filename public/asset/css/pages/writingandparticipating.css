@@ -116,6 +116,9 @@ header {
     font-size: 20px;
     margin-left: 10px;
 }
+#sec1EN .accordion-button::after {
+    margin-right: 10px;
+}
 
 .accordion-button.active {
     background-color: #222;
@@ -133,6 +136,10 @@ header {
     border-right: 2px solid #444;
     padding-right: 3%;
 }
+#sec1EN .accordion-content {
+    border-left: 2px solid #444;
+    padding-left: 3%;
+}
 .accordion-content > p {
     width: 50%;
     text-align: start;
@@ -145,7 +152,9 @@ header {
 .accordion-content > ul > li {
     padding-right: 3px;
 }
-
+#sec1EN .accordion-content > ul > li {
+    padding-left: 3px;
+}
 
 
 .sec1 > .content > .downdiv {
@@ -167,7 +176,7 @@ header {
     border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 
 .sec1 > .content > .downdiv > a:hover {

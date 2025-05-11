@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('SubDomainConference'); // ربط المحاور بالمؤتمر باستخدام المفتاح الفرعي
             $table->text('title'); // عنوان المحور الرئيسي
+            $table->text('title_en'); // عنوان المحور الرئيسي
             $table->timestamps();
         });
     }

@@ -9,6 +9,8 @@ use App\Models\hyper_links;
 
 use App\Models\objectives;
 
+use App\Models\papers;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -32,6 +34,19 @@ class conferenceExhibition extends Controller
     function logoimages($subdomain)
     {
         $directoryPath = public_path('asset/image/' . $subdomain . '//logo/');
+
+        if (!File::isDirectory($directoryPath)) {
+            abort(404, "Directory not found");
+        }
+
+        return collect(File::allFiles($directoryPath))->map(function ($file) use ($directoryPath) {
+            return str_replace($directoryPath . '/', '', $file->getRelativePathname());
+        })->toArray();
+    }
+
+    function TheExhibitionbrochureimages($subdomain)
+    {
+        $directoryPath = public_path('asset/image/' . $subdomain . '//TheExhibitionbrochureimages/');
 
         if (!File::isDirectory($directoryPath)) {
             abort(404, "Directory not found");
@@ -69,26 +84,51 @@ class conferenceExhibition extends Controller
 
                 
 
+                $TheExhibitionbrochureimages = $this->TheExhibitionbrochureimages($subdomain);
+                if ($TheExhibitionbrochureimages == null) {
+                    $TheExhibitionbrochureimages = "0";
+                }
+
                 $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionobjectives_en = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title_en');
                 $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes_en = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title_en');
 
 
                 $ConferenceName = conferenceData::where('SubDomainConference', $primaryKey)->value('nameConference');
+                $ConferenceName_en = conferenceData::where('SubDomainConference', $primaryKey)->value('nameConference_en');
                 $logoimages = $this->logoimages($subdomain);
                 $backgroundimages = $this->backgroundimages($subdomain);
 
 
                 $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
 
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+                $isResearchApproved = papers::where('SubDomainConference', $primaryKey)->where('status', 'approved')->count();
+
+                
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
+                    'ConferenceName_en' => $ConferenceName_en,
                     'logoimages' => $logoimages,
+                    'isResearchApproved' => $isResearchApproved,
                     'Receivingpapers' => $Receivingpapers,
                     'backgroundimages' => $backgroundimages,
                     'exhibitionobjectives' => $exhibitionobjectives ,
+                    'exhibitionobjectives_en' => $exhibitionobjectives_en ,
                     'exhibitionincludes' => $exhibitionincludes ,
-
+                    'exhibitionincludes_en' => $exhibitionincludes_en ,
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
+                    'TheExhibitionbrochureimages' => $TheExhibitionbrochureimages,
+                    'lang_dom' => Cookie::get('lang_dom'),
                     ...$hyper_LINKS
                 ];
 

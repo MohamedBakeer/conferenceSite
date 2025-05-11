@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\committeemembers;
 use App\Models\conferenceData;
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
 use App\Models\hyper_links;
 use App\Models\organizers;
+use App\Models\papers;
 use App\Models\sponsors;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -76,18 +81,47 @@ class organizersandsponsors extends Controller
 
                 $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
 
+                $isResearchApproved = papers::where('SubDomainConference', $primaryKey)->where('status', 'approved')->count();
+
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+
+                $committeeMembers = committeemembers::where('SubDomainConference', $primaryKey)->get();
+                $committeeMembers_conference = committeemembers::where('SubDomainConference', $primaryKey)->where("committee","=","conference")->count();
+                $committeeMembers_preparatory = committeemembers::where('SubDomainConference', $primaryKey)->where("committee","=","preparatory")->count();
+                $committeeMembers_scientific = committeemembers::where('SubDomainConference', $primaryKey)->where("committee","=","scientific")->count();
+
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
+
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'logoimages' => $logoimages,
+                    'isResearchApproved' => $isResearchApproved,
+                    'lang_dom' => Cookie::get('lang_dom'),
                     'backgroundimages' => $backgroundimages,
                     'Receivingpapers' => $Receivingpapers,
                     'organizers' => $organizers,
                     'sponsors' => $sponsors,
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
+
+                    'committeeMembers' => $committeeMembers,
+                    'countCommitteeMembers' => [
+                    'committeeMembers_conference' => $committeeMembers_conference,
+                    'committeeMembers_preparatory' => $committeeMembers_preparatory,
+                    'committeeMembers_scientific' => $committeeMembers_scientific],
                     ...$hyper_LINKS
                 ];
 
                 return view('pages.organizersandsponsors', $arrPass);
+                // return response()->json($arrPass );
                 // return response()->json($sponsors->pluck('category')->value('gold'));
             }
         }

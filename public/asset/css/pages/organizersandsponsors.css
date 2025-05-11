@@ -323,6 +323,130 @@ header {
 }
 
 
+/* ------------- */
+.sec1 > .content > .committee {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.sec1 > .content > .committee > div {
+    width: 100%;
+    /* height: 100vh; */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+    /* border: 1px solid red; */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.sec1 > .content > .committee > div > h1 {
+    color: #fff;
+    font-size: clamp(20px, 2vw, 28px);
+    width: 100%;
+    text-align: start;
+    /* border: 1px solid red; */
+    padding: 20px 15px;
+    background-color: #444444;
+}
+
+.sec1 > .content > .committee > div > .cards {
+    width: 100%;
+    height: 100%;
+    /* max-height: 460px; */
+    overflow-y: scroll;
+    border: 1px solid #44444483;
+    /* margin-top: 5px; */
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.sec1 > .content > .committee > div > .cards > .card {
+    width: 23%;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding-top: 15px;
+    margin: 10px;
+    transition: transform 0.3s;
+}
+.sec1 > .content > .committee > div > .cards > .card:hover {
+    transform: translateY(-5px);
+}
+.sec1 > .content > .committee > div > .cards > .card > img {
+    width: 250px;
+    height: 250px;
+    /* height: 100%; */
+    border-radius: 5px;
+    object-fit: fill;
+    margin-top: 15px;
+    /* border: 1px solid red; */
+}
+.sec1 > .content > .committee > div > .cards > .card > .data {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+.sec1 > .content > .committee > div > .cards > .card > .link {
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    /* border: 1px solid red; */
+    padding: 10px;
+}
+.sec1 > .content > .committee > div > .cards > .card > .link > a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444444;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+.sec1 > .content > .committee > div > .cards > .card > .link > a:hover {
+    background-color: #555555;
+    color: white;
+}
+.sec1 > .content > .committee > div > .cards > .card > p{
+    color: #fff;
+    font-size: clamp(20px, 2vw, 28px);
+    width: 100%;
+    text-align: center;
+    /* border: 1px solid red; */
+    padding: 10px;
+    background-color: #444444;
+    font-size: clamp(14px, 1vw, 18px);
+}
 @media (max-width : 1500px ) {
 
     .sec1 > .btn > button {

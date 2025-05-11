@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->text('SubDomainConference')->comment('المفتاح الأساسي لربط الأهداف بالمؤتمر');
             $table->text('member_attribute')->comment('صفة العضو : رئيس اللجنة التحضيرية');
+            $table->text('member_attribute_en')->comment('صفة العضو : رئيس اللجنة التحضيرية');
             $table->text('member_name')->comment('اسم العضو');
+            $table->text('member_name_en')->comment('اسم العضو');
             $table->text('member_role')->comment('دور العضو');
+            $table->text('member_role_en')->comment('دور العضو');
             $table->text('member_email')->comment('البريد الإلكتروني للعضو');
             $table->timestamps();
         });

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
+use App\Models\papers;
 use App\Models\sponsors;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -94,14 +98,21 @@ class HomePageController extends Controller
             } else {
 
                 $ConferenceName = conferenceData::where('SubDomainConference', $primaryKey)->value('nameConference');
+                $ConferenceName_en = conferenceData::where('SubDomainConference', $primaryKey)->value('nameConference_en');
                 $dateConference = conferenceData::where('SubDomainConference', $primaryKey)->value('dateConference');
                 
                 $themeConference = home_page_details::where('SubDomainConference', $primaryKey)->value('themeConference');
+                $themeConference_en = home_page_details::where('SubDomainConference', $primaryKey)->value('themeConference_en');
                 $introductionConference = home_page_details::where('SubDomainConference', $primaryKey)->value('introductionConference');
+                $introductionConference_en = home_page_details::where('SubDomainConference', $primaryKey)->value('introductionConference_en');
                 $partnersConference = home_page_details::where('SubDomainConference', $primaryKey)->value('partnersConference');
+                $partnersConference_en = home_page_details::where('SubDomainConference', $primaryKey)->value('partnersConference_en');
 
                 $ImportantDates = important_dates::where('SubDomainConference', $primaryKey)
                 ->pluck('event')
+                ->toArray();
+                $ImportantDates_en = important_dates::where('SubDomainConference', $primaryKey)
+                ->pluck('event_en')
                 ->toArray(); // الحصول على التواريخ أو الأحداث في مصفوفة
 
 /*                 // تحويل القيم لتنسيق كما في المثال المطلوب
@@ -143,39 +154,67 @@ class HomePageController extends Controller
 
                 $details = [
                     'ConferenceName' => $ConferenceName,
+                    'ConferenceName_en' => $ConferenceName_en,
                     'ConferenceTo' => "لنقابة المهن الهندسية بالزاوية",
+                    'ConferenceTo_en' => "To the Engineering Syndicate in Al-Zawiya",
                     'Syndicatetext' => $themeConference,
+                    'Syndicatetext_en' => $themeConference_en,
                     'ConferenceDate' => $dateConference,
                     'ConferenceIntroduction' => $introductionConference,
-                    'PartnersConference' => $partnersConference    
+                    'ConferenceIntroduction_en' => $introductionConference_en,
+                    'PartnersConference' => $partnersConference    ,
+                    'PartnersConference_en' => $partnersConference_en,
                 ];
 
                 $files_public = [
                     'Conferenceimages' => $Conferenceimages,    
                     'Sponserimages' => $Sponserimages,
                     'ImportantDates' => $ImportantDates,
+                    'ImportantDates_en' => $ImportantDates_en,
                     'Thebrochureimages' => $Thebrochureimages,
                 ];
 
                 $facebookurl = hyper_links::where('SubDomainConference', $primaryKey)->value('facebookurl');
                 $whatsAppurl = hyper_links::where('SubDomainConference', $primaryKey)->value('whatsAppurl');
                 $phoneNUMBER = hyper_links::where('SubDomainConference', $primaryKey)->value('phoneNUMBER');
+                $CMT3url = hyper_links::where('SubDomainConference', $primaryKey)->value('CMT3url');
+
                 $hyper_LINKS  = [
                     'facebookurl' => $facebookurl,
                     'whatsAppurl' => $whatsAppurl,
+                    'CMT3url' => $CMT3url,
+
                     'phoneNUMBER' => $phoneNUMBER
                 ];
 
                 $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
+
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+
+                $isResearchApproved = papers::where('SubDomainConference', $primaryKey)->where('status', 'approved')->count();
+
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
 
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'backgroundimages' => $backgroundimages,
                     'logoimages' => $logoimages,
                     'Receivingpapers' => $Receivingpapers,
+                    'isResearchApproved' => $isResearchApproved,
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
+
+                    'lang_dom' => Cookie::get('lang_dom'),
                     ...$details ,
                     ...$files_public,
                     ...$hyper_LINKS
+
                 ];
 
 

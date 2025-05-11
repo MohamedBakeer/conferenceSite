@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('topic_id'); // ربط الموضوع الفرعي بالمحور الرئيسي
             $table->text('title'); // عنوان الموضوع الفرعي
+            $table->text('title_en'); // عنوان الموضوع الفرعي
             $table->timestamps();
         });
     }

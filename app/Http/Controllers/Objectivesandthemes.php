@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\conferenceData;
+use App\Models\exhibitionincludes;
+use App\Models\exhibitionobjectives;
 use App\Models\hyper_links;
 use App\Models\objectives;
+use App\Models\papers;
 use App\Models\SubTopic;
 use App\Models\Topic;
+use Cookie;
 use File;
 use Illuminate\Http\Request;
 
@@ -74,11 +78,14 @@ class Objectivesandthemes extends Controller
                     return [
                         'id' => $topic->id,
                         'title' => $topic->title, // اسم المحور
-                        'sub_topics' => SubTopic::where('topic_id', $topic->id)->pluck('title') // جلب المواضيع الفرعية
+                        'title_en' => $topic->title_en, // اسم المحور
+                        'sub_topics' => SubTopic::where('topic_id', $topic->id)->pluck('title'), // جلب المواضيع الفرعية
+                        'sub_topics_en' => SubTopic::where('topic_id', $topic->id)->pluck('title_en') // جلب المواضيع الفرعية
                     ];
                 });
 
                 $objectives = objectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $objectives_en = objectives::where('SubDomainConference', $primaryKey)->pluck('title_en');
 
 
                 $ConferenceName = conferenceData::where('SubDomainConference', $primaryKey)->value('nameConference');
@@ -87,14 +94,30 @@ class Objectivesandthemes extends Controller
 
                 $Receivingpapers = conferenceData::where('SubDomainConference', $primaryKey)->value('Receivingpapers');
 
+                if (!Cookie::get('lang_dom')) {
+                    // إذا لم يوجد كوكيز، قم بإنشائه مع القيمة الافتراضية "Mohamed"
+                    $cookie = cookie('lang_dom', 'ar', 60);
+                    // إعادة التوجيه إلى الصفحة الرئيسية مع رسالة
+                    return redirect('/')->with('message', 'تم إنشاء الكوكيز مع القيمة الافتراضية "Mohamed"')->cookie($cookie);
+                }
+                $isResearchApproved = papers::where('SubDomainConference', $primaryKey)->where('status', 'approved')->count();
+                $exhibitionobjectives = exhibitionobjectives::where('SubDomainConference', $primaryKey)->pluck('title');
+                $exhibitionincludes = exhibitionincludes::where('SubDomainConference', $primaryKey)->pluck('title');
+
                 $arrPass = [
                     'kaydomain' => $subdomain,
                     'ConferenceName' => $ConferenceName,
                     'logoimages' => $logoimages,
                     'Receivingpapers' => $Receivingpapers,
                     'backgroundimages' => $backgroundimages,
+                    'isResearchApproved' => $isResearchApproved,
+                    'exhibitionobjectives_count' => $exhibitionobjectives->count() ,
+                    'exhibitionincludes_count' => $exhibitionincludes->count() ,
+
+                    'lang_dom' => Cookie::get('lang_dom'),
                     'topics' => $formattedTopics, // هنا البيانات الجديدة
                     'objectives' => $objectives ,
+                    'objectives_en' => $objectives_en,
 
                     ...$hyper_LINKS
                 ];
