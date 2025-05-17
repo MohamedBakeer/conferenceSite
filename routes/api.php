@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\apiconferenceData;
-use App\Http\Controllers\apiFolders;
-use App\Http\Controllers\apihomePageDetails;
-use App\Http\Controllers\apiobjectivesAndThemes;
+
+use App\Http\Controllers\api\apiconferenceData;
+use App\Http\Controllers\api\apiFolders;
+use App\Http\Controllers\api\apihomePageDetails;
+use App\Http\Controllers\api\apiobjectivesAndThemes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::domain('{subdomain}.beko.com')->group(function () {
     // Route::domain('{subdomain}.leaboz.org.ly')->group(function () {
     Route::get('/', function () {
-        return "hello Api" . request()->route('subdomain');
+        return "hello Api " . request()->route('subdomain');
     });
 
 
@@ -52,6 +53,12 @@ Route::domain('{subdomain}.beko.com')->group(function () {
         Route::post('/Themes/store', 'storeThemes');
         Route::post('/Themes/update', 'updateThemes');
         Route::post('/Themes/delete', 'deleteThemes');
+
+        // Themes  -  ⌛ محاور المؤتمر :
+        Route::post('/Themes/subtopic/index', 'index_sub_dopic');
+        Route::post('/Themes/subtopic/store', 'store_sub_dopic');
+        Route::post('/Themes/subtopic/update', 'update_sub_dopic');
+        Route::post('/Themes/subtopic/delete', 'delete_sub_dopic');
 
     });
 

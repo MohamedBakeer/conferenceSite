@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Models\conferenceData;
 use Illuminate\Http\Request;
 
@@ -30,11 +31,13 @@ class apiconferenceData extends Controller
         try {
             $validated = $request->validate([
                 'nameConference' => 'required|string|max:255|unique:conference_data,nameConference',
+                'nameConference_en' => 'required|string|max:255|unique:conference_data,nameConference_en',
                 'SubDomainConference' => 'required|string|max:255|unique:conference_data,SubDomainConference',
             ]);
 
             $data = [
                 'nameConference' => $validated['nameConference'],
+                'nameConference_en' => $validated['nameConference_en'],
                 'SubDomainConference' => $validated['SubDomainConference'],
                 'dateConference' => $request->input('dateConference'),
                 'activationConference' => 'active',
@@ -67,6 +70,13 @@ class apiconferenceData extends Controller
                     'nameConference' => 'string|max:255|unique:conference_data,nameConference,' . $conference->id,
                 ]);
                 $updateData['nameConference'] = $request->input('nameConference');
+            }
+
+            if ($request->has('nameConference_en')) {
+                $request->validate([
+                    'nameConference_en' => 'string|max:255|unique:conference_data,nameConference_en,' . $conference->id,
+                ]);
+                $updateData['nameConference_en'] = $request->input('nameConference_en');
             }
 
             if ($request->has('activationConference')) {

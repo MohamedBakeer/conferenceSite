@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class apiFolders extends Controller
@@ -42,7 +43,9 @@ class apiFolders extends Controller
                     '/Writingandparticipating',
                     '/Writingandparticipating/Paperwritingtemplate(ar)',
                     '/Writingandparticipating/Paperwritingtemplate(en)',
-                    '/Writingandparticipating/pdfwritingtemplate'
+                    '/Writingandparticipating/pdfwritingtemplate',
+                    '/CMT3',
+                    '/CMT3/Conference',
                 ];
 
                 // إنشاء جميع المجلدات دفعة واحدة

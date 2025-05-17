@@ -24,7 +24,12 @@
     @yield('stylo')
 </head>
 <body dir="rtl">
-    <a class="switchLang" href="{{ route('switch-cookie', ['subdomain' => request()->route('subdomain')]) }}"><i class="fa-solid fa-globe"></i></a>
+    
+    @if ($lang_dom == 'ar')
+        <a class="switchLang" href="{{ route('switch-cookie', ['subdomain' => request()->route('subdomain')]) }}"><span> English <- </span> <i class="fa-solid fa-globe"></i> </a>
+    @elseif ($lang_dom == 'en')
+    <a class="switchLang" href="{{ route('switch-cookie', ['subdomain' => request()->route('subdomain')]) }}"><span> Arabic <- </span> <i class="fa-solid fa-globe"></i> </a>
+    @endif
     
         @if ($lang_dom == 'ar')
         <header dir="rtl">

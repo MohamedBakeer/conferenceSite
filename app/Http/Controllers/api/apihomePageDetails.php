@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Models\home_page_details;
 use App\Models\important_dates;
 use Illuminate\Http\Request;
@@ -13,7 +14,6 @@ class apihomePageDetails extends Controller
      */
     public function index($subdomain)
     {
-        //
         //$subdomain = "fifth";
         $homePageDetails = home_page_details::where("SubDomainConference", $subdomain)->get();
         if ($homePageDetails->isEmpty()) {
@@ -33,14 +33,19 @@ class apihomePageDetails extends Controller
             $validated = $request->validate([
                 'SubDomainConference' => 'required|string|max:255|unique:home_page_details,SubDomainConference',
                 'themeConference' => 'string',
-                'introductionConference' => 'string'
+                'themeConference_en' => 'string',
+                'introductionConference' => 'string',
+                'introductionConference_en' => 'string'
             ]);
 
             $data = [
                 'SubDomainConference' => $validated['SubDomainConference'],
                 'themeConference' => $validated['themeConference'],
+                'themeConference_en' => $validated['themeConference_en'],
                 'introductionConference' => $validated['introductionConference'],
-                'partnersConference' => $request->input('partnersConference')
+                'introductionConference_en' => $validated['introductionConference_en'],
+                'partnersConference' => $request->input('partnersConference'),
+                'partnersConference_en' => $request->input('partnersConference_en')
             ];
             $result = home_page_details::create($data);
             return response()->json("home Page Details Created", 201);
@@ -79,6 +84,13 @@ class apihomePageDetails extends Controller
                 $updateData['themeConference'] = $request->input('themeConference');
             }
 
+            if ($request->has('themeConference_en')) {
+                $request->validate([
+                    'themeConference_en' => 'string',
+                ]);
+                $updateData['themeConference_en'] = $request->input('themeConference_en');
+            }
+
             if ($request->has('introductionConference')) {
                 $request->validate([
                     'introductionConference' => 'string'
@@ -86,16 +98,20 @@ class apihomePageDetails extends Controller
                 $updateData['introductionConference'] = $request->input('introductionConference');
             }
 
-            if ($request->has('Receivingpapers')) {
+            if ($request->has('introductionConference_en')) {
                 $request->validate([
-                    'Receivingpapers' => 'in:active,inactive',
+                    'introductionConference_en' => 'string'
                 ]);
-                $updateData['Receivingpapers'] = $request->input('Receivingpapers');
+                $updateData['introductionConference_en'] = $request->input('introductionConference_en');
             }
 
-            if ($request->has('partnersConference')) {
 
+            if ($request->has('partnersConference')) {
                 $updateData['partnersConference'] = $request->input('partnersConference');
+            }
+
+            if ($request->has('partnersConference_en')) {
+                $updateData['partnersConference_en'] = $request->input('partnersConference_en');
             }
 
             if (empty($updateData)) {
@@ -138,7 +154,8 @@ class apihomePageDetails extends Controller
         try {
             $data = [
                 'SubDomainConference' => $subdomain,
-                'event' => $request->input('event')
+                'event' => $request->input('event'),
+                'event_en' => $request->input('event_en')
             ];
             $result = important_dates::create($data);
             return response()->json("important Dates Store Created", 201);
@@ -163,6 +180,10 @@ class apihomePageDetails extends Controller
             $importantDate->event = $request->input('event');
         }
 
+        if ($request->has('event_en')) {
+            $importantDate->event_en = $request->input('event_en');
+        }
+
         $importantDate->save();
 
         return response()->json("Important date updated successfully.", 200);
@@ -176,7 +197,6 @@ class apihomePageDetails extends Controller
     {
         try {
             $data = [
-                
                 'id' => $request->input('id')
             ];
             $result = important_dates::where($data)->delete();
