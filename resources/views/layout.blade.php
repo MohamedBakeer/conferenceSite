@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="مؤتمرات الزاوية الهندسية والتقنية">
@@ -22,9 +23,10 @@
     <link rel="stylesheet" href="{{ url('asset/css/style.css')}}">
     <link rel="shortcut icon" href="{{ url('asset/image/' . $kaydomain . '//logo/' . $logoimages[0] ) }}" type="image/png">
     @yield('stylo')
+    
 </head>
 <body dir="rtl">
-    
+
     @if ($lang_dom == 'ar')
         <a class="switchLang" href="{{ route('switch-cookie', ['subdomain' => request()->route('subdomain')]) }}"><span> English <- </span> <i class="fa-solid fa-globe"></i> </a>
     @elseif ($lang_dom == 'en')

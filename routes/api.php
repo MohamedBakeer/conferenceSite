@@ -5,6 +5,7 @@ use App\Http\Controllers\api\apiconferenceData;
 use App\Http\Controllers\api\apiFolders;
 use App\Http\Controllers\api\apihomePageDetails;
 use App\Http\Controllers\api\apiobjectivesAndThemes;
+use App\Http\Controllers\api\apiWritingandparticipating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,12 @@ Route::domain('{subdomain}.beko.com')->group(function () {
         Route::post('/Themes/subtopic/update', 'update_sub_dopic');
         Route::post('/Themes/subtopic/delete', 'delete_sub_dopic');
 
+    });
+
+    Route::controller(apiWritingandparticipating::class)->prefix("writingAndParticipating")->group(function () {
+        Route::post('/index', 'index');
+        Route::post('/store', 'store');
+        Route::post('/update', 'update');
     });
 
 });
